@@ -1,0 +1,106 @@
+#sub{
+    margin: auto;
+    width: 60%;
+}
+
+#felsorolas{
+    margin: auto;
+    width: 70%;
+    margin-bottom: 2em;
+    overflow-x: auto;
+    height: fit-content;
+}
+
+main .row{
+    height: 25em;
+}
+
+form{
+    text-align: left;
+}
+
+#inputs{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+#inputs>.g{
+    margin: 1em;
+}
+
+form button{
+    float: right;
+}
+
+.card{
+    width: 20em;
+}
+
+#szoveg{
+    height: 3em;
+    overflow: hidden;
+}
+
+.container{
+    margin: auto;
+    text-align: center;
+    margin-bottom: 2em
+}
+
+#borito{
+    height: 30em;
+    width: auto;
+    margin: auto;
+    margin-top:2em;
+}
+
+h2{
+    text-align: center;
+    font-weight: bold;
+}
+
+hr{
+    width:  85%;
+    margin:auto;
+}
+
+#back{
+    float:right;
+    margin-right: 3em;
+}
+
+@media (max-width: 800px){
+    #borito{
+        height: 25em;
+    }
+}
+
+@media (max-width: 780px){
+    #inputs{
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #inputs>.g{
+        margin: 0.5em;
+    }
+
+    form{
+        text-align: center;
+    }
+
+    form>button{
+        margin-top: 1em;
+    }
+
+    #borito{
+        height: 20em;
+    }
+}
+
+@media (max-width: 550px){
+    #borito{
+        height: 15em;
+    }
+}

@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo&family=Roboto+Slab:wght@300&display=swap');
+
+.main{
+    margin: auto;
+    width: 60%;
+    padding: 1em;
+    color:#3F4E4F;
+    border-radius: 10px;
+    font-family: "Helvetica";
+    box-shadow: 20px 20px 50px grey;
+}
+
+.logoholder{
+    text-align: center;
+}
+
+img{
+    margin: auto;
+    height: 5em;
+    width: auto;
+}
+
+h1{
+    margin: auto;
+    text-align: center;
+}
+
+form{
+    margin: auto;
+    text-align: center;
+}
+
+button{
+    background-color: #3F4E4F;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+button:hover{
+    filter: opacity(0.8);
+}

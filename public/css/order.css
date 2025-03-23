@@ -1,0 +1,43 @@
+main{
+    width: 100%;
+    overflow: hidden;
+}
+
+main>.container{
+    width: 100%;
+    padding-top: 3em;
+}
+
+#cart{
+    text-align: center;
+}
+
+#cart>.row{
+    text-align: center;
+    margin: auto;
+}
+
+img{
+    max-width: 7em;
+    max-height: auto;
+}
+
+.row{
+    margin: auto;
+    width:80%;
+    margin-bottom: 1em;
+}
+
+form:nth-last-of-type(1){
+    width: 90%;
+    margin: auto;
+}
+
+form>.row:nth-last-child(2), form>.row:nth-last-child(1){
+    margin: auto;
+}
+
+main h1{
+    text-align: center;
+    margin: auto;
+}

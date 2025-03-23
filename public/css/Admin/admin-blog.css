@@ -1,0 +1,53 @@
+main{
+    margin-bottom: 1em;
+}
+
+main>h1{
+    margin: auto;
+}
+
+.container{
+    width:100%;
+    height: fit-content;
+}
+
+#table{
+    width: 100%;
+    text-align: center;
+}
+
+.row:first-child{
+    padding-top: 1em;
+    background-color: lightgray;
+    border-radius: 10px;
+}
+
+#table h2{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.row img{
+    height: 5em;
+    width: auto;
+}
+
+.row{
+    margin: 1em 0;   
+}
+
+#boritokep{
+    height: 10em;
+    width: auto;
+    margin: auto;
+}
+
+#delButton{
+    border: none;
+    text-align: center;
+}
+
+#delButton>img{
+    height: 1.5em;
+    width: auto;
+}

@@ -1,0 +1,50 @@
+.container{
+    width:90%;
+    height: fit-content;
+}
+
+#table{
+    width: 100%;
+    text-align: center;
+    max-height: 28em;
+    overflow: scroll;
+}
+
+.row:first-child{
+    padding-top: 1em;
+    background-color: lightgray;
+    border-radius: 10px;
+}
+
+#col{
+    border-bottom: 1px solid black;
+}
+
+#table h2{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.row img{
+    height: 5em;
+    width: auto;
+}
+
+.row{
+    margin: 1em 0;
+}
+
+.controls{
+    height: fit-content;
+    margin: auto;
+}
+
+#delete{
+    border: none;
+    text-align: center;
+}
+
+#delete>img{
+    height: 1.5em;
+    width: auto;
+}

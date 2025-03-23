@@ -1,0 +1,97 @@
+main>.container{
+    padding-bottom: 3em;
+
+}
+
+.items{
+    padding: 1em;
+}
+
+.items>.row>.col:first-child{
+    border-right: 1px solid gray;
+}
+
+.items .row{
+    padding: 1em;
+}
+
+.items>.row>.col:nth-child(2){
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+#backIcon{
+    position: absolute;
+    top: 1em;
+    left:1em;
+    height: 2em;
+    width: auto;
+    border-radius: 50%;
+}
+
+#backIcon:hover{
+    height: 2.1em;
+    box-shadow: 5px 5px 5px lightgray;
+    transition: all 0.2s;
+}
+
+.content{
+    width:100%;
+}
+
+.content>h2{
+    margin-bottom: 1em;
+}
+
+#price{
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    font-size: 1.3em;
+    font-style: italic;
+}
+
+h2{
+    margin-top: 1em;
+}
+
+section{
+    margin-top: 7em;
+    width: fit-content;
+    margin: auto;
+    text-align: center;
+}
+
+#szoveg{
+    height: 3em;
+    overflow: hidden;
+}
+
+#cartbutton{   
+    box-shadow: 10px 10px 40px lightgrey;
+    border : 1px solid black;
+    position: absolute;
+    bottom: 1em;
+    left:50%;
+    transform: translateX(-50%); 
+}
+
+#felsorolas{
+    margin: auto;
+    width: 70%;
+    margin-bottom: 2em;
+    overflow-x: auto;
+}
+
+#felsorolas>.col{
+    border-right: none;
+}
+
+#cartAlert{
+    font-size: 0.8em;
+    position: absolute;
+    bottom: -0.5em;
+    left:50%;
+    transform: translateX(-50%); 
+}
