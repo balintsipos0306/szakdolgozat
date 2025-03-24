@@ -32,6 +32,12 @@ header{
     float: right;
 }
 
+#iconList>li:first-child{
+    background-color: blue;
+    display: flex;
+    align-items: center;
+}
+
 #iconList li{
     padding: 0 0.5em;
     text-align: center;
