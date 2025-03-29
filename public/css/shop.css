@@ -32,10 +32,17 @@ header{
     float: right;
 }
 
-#iconList>li:first-child{
-    background-color: blue;
-    display: flex;
+#iconList>li:nth-last-of-type(2){
+    margin-left: 0;
+    padding-left: 0;
+}
+
+#nameHolder{
+    display: flexbox;
     align-items: center;
+    height: 1.7em;
+    padding: 0;
+    margin-right: 0;
 }
 
 #iconList li{

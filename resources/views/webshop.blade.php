@@ -248,11 +248,11 @@
     </nav>
     <div class="container">
       <ul id="iconList" class="nav">
-        <li class="nav-item">
           @if (!empty(Auth()->user()->name))
-            <p id="username">{{Auth()->user()->name}}</p>
+            <li class="nav-item" id="nameHolder">
+              <p id="username">{{Auth()->user()->name}}</p>
+            </li>
           @endif
-        </li>
         <li class="nav-item">
           <a data-bs-toggle="modal" data-bs-target="#login"><img id="icon" src="../../webp/user.png" alt=""></a>
         </li>
