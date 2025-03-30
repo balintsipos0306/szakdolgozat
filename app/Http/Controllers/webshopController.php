@@ -23,14 +23,17 @@ class webshopController extends Controller
         $imagePath = $request->file('image')->store('webshop_items', 'public');
 
         // Új rekord mentése az adatbázisba
+        try{
         Webshop::create([
             'name' => $request->title,
             'text' => $request->text,
             'image_path' => $imagePath,
             'price' => $request->price,
         ]);
-
-        return redirect()->back()->with('Success', 'Termék feltöltése sikeres');
+        }catch(\Exception $e){
+            return back()->withErrors('error', 'Hiba a termék feltöltésekor');
+        }
+        return back()->with('success', 'Termék feltöltése sikeres');
     }
 
     public function delete(Request $request){
@@ -44,10 +47,10 @@ class webshopController extends Controller
             {
                 unlink($file_path);
                 DB::table('webshop')->where('id', $id)->delete();
-                return redirect()->back()->with('success', 'A termék törlése sikeres');
+                return back()->with('success', 'A termék törlése sikeres');
             }
         }
-        return redirect()->back()->with('failed', 'A termék törlése sikertelen');
+        return back()->withError('failed', 'A termék törlése sikertelen');
     }
 
     public function update(Request $request)
@@ -80,7 +83,7 @@ class webshopController extends Controller
             'price' => $request->price
         ]);
 
-        return redirect()->back()->with('Success', 'Termék módosítása sikeres');
+        return back()->with('success', 'Termék módosítása sikeres');
     }
 
     public function registrate(Request $request){
@@ -123,7 +126,7 @@ class webshopController extends Controller
             DB::table('cart')->where('userID', $request->userID)->where('itemID', $request->itemID)->delete();
             return redirect()->back()->with('Success', 'Sikeres törlés');
         }
-        return redirect()->back()->with('Failed', 'Sikertelen törlés');
+        return redirect()->back()->withErrors('Failed', 'Sikertelen törlés');
 
     }
 
