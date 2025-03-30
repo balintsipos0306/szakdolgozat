@@ -182,7 +182,9 @@ class MailController extends Controller
             $mail->send();
             $mail->smtpClose();
         }
-        if ($mail->send())
+        if (!$mail->send()){
+            return back()->with('erorr', 'Hiba a körlevél elküldésekor');
+        }
         return redirect()->back()->with('success', 'Blog feltöltve - email elküldve');
     }
 

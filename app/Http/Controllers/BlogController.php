@@ -97,6 +97,11 @@ class BlogController extends Controller
 
         $updated = DB::table('blogs')->where('title', $request->title)->where('text', $request->text)->first();
         $id = $updated->id;
+
+        if(!$updated){
+            return back()->with('error', 'Hiba a blog mentésekor');
+        }
+
         if($request->isPublished == "Publikált" && $oldblog->isPublished == "Piszkozat"){
             return redirect()->action([MailController::class, 'newBlogToMail'], ['title' => $request->title,
                                                                                                         'text' => $request->text,
