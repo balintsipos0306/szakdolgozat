@@ -131,7 +131,10 @@ class MailController extends Controller
             $mail->send();
             $mail->smtpClose();
         }
-        return back()->with('success', 'körlevél sikeresen elküldve');
+        if (!$mail->send()){
+            return back()->with('error', 'Körlevél elküldése sikertelen.');
+        }
+        return back()->with('success', 'Körlevél sikeresen elküldve');
     }
 
     public function newBlogToMail(Request $request){
