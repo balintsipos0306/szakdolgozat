@@ -41,3 +41,12 @@ main h1{
     text-align: center;
     margin: auto;
 }
+
+#pay{
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 20px 20px 50px lightgrey;
+    margin: auto;
+    margin-top: 5em;
+    width: fit-content;
+}

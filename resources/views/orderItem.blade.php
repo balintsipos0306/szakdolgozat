@@ -104,6 +104,16 @@
                 </div>
             </div>
         </form>
+
+        <div class="container" id="pay">
+            <script src="https://www.paypal.com/sdk/js?client-id=BAAFzOmF0PphAtzpL10wsApyV2etCuuWPpbq3w9592H6bLp1ETg6EQB0QrnUpgcr5HbOz0B8IsUdJkucKo&components=hosted-buttons&disable-funding=venmo&currency=HUF"></script>
+            <div id="paypal-container-ZFRD6HLZVY5KS"></div>
+            <script>
+                paypal.HostedButtons({
+                    hostedButtonId: "ZFRD6HLZVY5KS",
+                }).render("#paypal-container-ZFRD6HLZVY5KS")
+            </script>
+        </div>
     </div>
 
   </main>
