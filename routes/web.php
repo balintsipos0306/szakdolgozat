@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MailController;
@@ -70,8 +71,11 @@ Route::get('/newBlog-email', [MailController::class, 'newBlogToMail']);
 
 //Webshop
 Route::get('/shop', function(){
-    return view("webshop");
+    $items = DB::table('webshop')->get();
+    return view("webshop", compact('items'));
 });
+
+Route::get('/shop/search', [webshopController::class, 'search'] );
 
 Route::get('/shop/item/{id}', function($id) {
     return view('webshopItem', ['id' => $id]);
@@ -122,7 +126,7 @@ Route::middleware('CustomAuth') -> group(function (){
     Route::post('/webshop-upload', [webshopController::class, 'store']);
     Route::post('/webshop-delete', [webshopController::class, 'delete']);
     Route::post('/webshop-update', [webshopController::class, 'update']);
-
+    
     Route::get('/admin/webshop/item/{id}', function($id) {
         return view('Admin/webshopEdit', ['id' => $id]);
     })->name('item.edit');

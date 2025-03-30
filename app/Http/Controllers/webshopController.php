@@ -143,6 +143,17 @@ class webshopController extends Controller
             return redirect()->back()->with('Success', 'Sikeres törlés');
         }
         return redirect()->back()->withErrors(['delete' => 'Fiók törlése sikertelen']);
+    }
+    
+    public function search(Request $request){
 
+        $searchTerm = $request->input('input');
+
+        $items = DB::table('webshop')
+                ->where('name', 'LIKE', "%{$searchTerm}%")
+                ->orWhere('text', 'LIKE', "%{$searchTerm}%")
+                ->get();
+    
+        return view('webshop', compact('items'));
     }
 }
