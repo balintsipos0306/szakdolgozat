@@ -182,6 +182,7 @@ class MailController extends Controller
             $mail->send();
             $mail->smtpClose();
         }
+        if ($mail->send())
         return redirect()->back()->with('success', 'Blog feltöltve - email elküldve');
     }
 
@@ -218,17 +219,15 @@ class MailController extends Controller
                 <div style="margin: auto;text-align: center;"><a href="http://localhost:8000/unSubscribe?email=' . urlencode($address) . '&name=' . urlencode($name) . '" style="background-color: #3F4E4F; color: white;padding: 10px; border-radius: 10px; text-decoration: none;">Fiók törlése</a></div>
                 </div> 
             ';
-        if (!$mail->send()) {
-            echo 'Email not sent. An error was encountered: ' . $mail->ErrorInfo;
-        } else {
-            echo 'Message has been sent.';
-        }
+
         $mail->smtpClose();
         
         if($request->subsbcribe){
             return redirect()->action([SubController::class, 'store'], ['email' => $request->email, 'name'=> $request->name]);
         }
-        
+        if (!$mail->send()) {
+            return back()->with('error', 'Regisztráció sikertelen');
+        }
         return back()->with('success', 'Sikeres regisztráció');
 
 

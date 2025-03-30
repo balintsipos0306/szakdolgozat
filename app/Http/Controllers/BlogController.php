@@ -32,6 +32,10 @@ class BlogController extends Controller
         $new = DB::table('blogs')->where('title', $request->title)->where('text', $request->text)->first();
         $id = $new->id;
 
+        if (!$new){
+            return back()->with('error', 'A blog feltöltése sikertelen.');
+        }
+
 
         if($request->isPublished == "Publikált"){
             return redirect()->action([MailController::class, 'newBlogToMail'], ['title' => $request->title,
