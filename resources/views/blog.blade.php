@@ -43,37 +43,7 @@
     </script>
   @endif
 
-  <header id="myheader">
-    <div class="hamburger">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </div>
-
-    <div class= "logoholder">
-      <img id = "logo" src="webp/tinywow_Logó.webp" alt="">
-    </div>
-
-    <nav id = "navv">
-      <ul class="nav justify-content-end" id="menu">
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/">Kezdőlap</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="gallery/nature">Galéria</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="contact">Elérhetőségek</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Blog</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/shop">Webshop</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
+  <x-base-header/>
 
   <main id = "main">  
     @php

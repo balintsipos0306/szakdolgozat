@@ -1,0 +1,62 @@
+#myheader{
+    width: 100%;
+    height: fit-content;
+    position: relative;
+    transition: background-color 0.8s ease-in-out;
+    transition: padding-right 0.3s ease-in-out;
+    z-index: 1;
+    font-size: large;
+    margin-bottom: 1em;
+}
+
+.logoholder{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    transition: transform 0.3s ease;
+}
+
+#logo{
+    display: block;
+    height: 10em;
+    width: fit-content;
+    transition: transform 0.5s ease;
+}
+
+header nav{
+    display:flex;
+    justify-content:center;
+    height: fit-content;
+    z-index: 3;
+}
+
+header nav ul li a.nav-link, header nav ul li a.nav-link:hover, header nav ul li a.nav-link:visited {
+    position: relative;
+    text-decoration: none;
+    transition: color 0.4s ease-in-out;
+    color: black;
+    font-size: medium;
+    margin-bottom: 10%
+}
+
+header nav a.nav-link::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+header nav a.nav-link.white::before {
+    background-color: white;
+}
+  
+header nav a.nav-link:hover::before {
+    transform: scaleX(1);
+}
