@@ -1,12 +1,20 @@
 #myheader{
+    background-color: white;
+    padding-right: 0%;
+    position: relative;
     width: 100%;
     height: fit-content;
-    position: relative;
-    transition: background-color 0.8s ease-in-out;
-    transition: padding-right 0.3s ease-in-out;
+    transition: all 0.5s ease-in-out;
     z-index: 1;
     font-size: large;
     margin-bottom: 1em;
+}
+
+#myheader.scrolled{
+    background-color: #3F4E4F;
+    padding-right: 5%;
+    position: fixed
+
 }
 
 .logoholder{
@@ -14,14 +22,20 @@
     justify-content: center;
     text-align: center;
     width: 100%;
-    transition: transform 0.3s ease;
+    transition: all 0.5s ease-in-out;
 }
 
 #logo{
     display: block;
     height: 10em;
+    opacity: 1;
     width: fit-content;
-    transition: transform 0.5s ease;
+    transition: all 0.5s ease-in-out;
+}
+
+#logo.scrolled{
+    height: 0;
+    opacity: 0;
 }
 
 header nav{
@@ -31,16 +45,16 @@ header nav{
     z-index: 3;
 }
 
-header nav ul li a.nav-link, header nav ul li a.nav-link:hover, header nav ul li a.nav-link:visited {
+a.nav-link{
     position: relative;
     text-decoration: none;
-    transition: color 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
     color: black;
     font-size: medium;
     margin-bottom: 10%
 }
 
-header nav a.nav-link::before {
+a.nav-link::before {
     content: "";
     position: absolute;
     display: block;
@@ -50,13 +64,13 @@ header nav a.nav-link::before {
     left: 0;
     background-color: black;
     transform: scaleX(0);
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
 }
 
-header nav a.nav-link.white::before {
+a.nav-link.white::before {
     background-color: white;
 }
   
-header nav a.nav-link:hover::before {
+a.nav-link:hover::before {
     transform: scaleX(1);
 }

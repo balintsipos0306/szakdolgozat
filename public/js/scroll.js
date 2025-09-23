@@ -7,28 +7,17 @@ window.addEventListener("load", () => {
         document.body.removeChild("loader");
     })
 });
-var value;
 
 document.addEventListener("scroll", function() {
 
-    if (window.innerWidth <1450){
-        value = 800;
-    }
-    else{
-        value = 20;
-    }
-
-    var logo = document.getElementById("logo");
-    var header = document.getElementById("myheader");
-    var nav = document.getElementById("navv");
-    var links = document.querySelectorAll(".nav-link");
+    const logo = document.getElementById("logo");
+    const header = document.getElementById("myheader");
+    const nav = document.getElementById("navv");
+    const links = document.querySelectorAll(".nav-link");
 
     if(window.scrollY > 10){
-        logo.style.display = "none";
-        // logo.style.transition = "all 1s ease-in-out"
-        header.style.backgroundColor = "#3F4E4F";
-        header.style.paddingRight = "5%";
-        header.style.position= "fixed";
+        logo.classList.add("scrolled")
+        header.classList.add("scrolled")
         nav.style.justifyContent = "right";
         for (var i = 0; i < links.length; i++) {
             links[i].style.color = "white";
@@ -37,10 +26,8 @@ document.addEventListener("scroll", function() {
         }
     }
     else{
-        logo.style.display = "block";
-        header.style.backgroundColor = "white";
-        header.style.paddingRight = "0%";
-        header.style.position = "relative";
+        logo.classList.remove("scrolled")
+        header.classList.remove("scrolled")
         nav.style.justifyContent = "center";
         for (var i = 0; i < links.length; i++) {
             links[i].style.color = "black";
