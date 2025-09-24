@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/fooldal.css">
+  <link rel="stylesheet" href="css/mainPage.css">
   <link rel="stylesheet" href="css/scrollbar.css">
   <title>Sipos Bálint - Kezdőlap</title>
 </head>
@@ -66,7 +66,7 @@
         <img src="../me.jpg" alt="">
       </div>
       <section>
-        <p>Sipos Bálint vagyok, {{date('Y')-2003}} éves, jelenleg a Szombathelyi Eltén tanulok Programtervező Informatikus szakon. 2019 őszén kezdtem el a természetfotózást egy jégmadár miatt.</p>
+        <p>Sipos Bálint vagyok, {{date('Y')-2003}} éves, jelenleg a szombathelyi ELTE-n tanulok Programtervező Informatikus szakon. 2019 őszén kezdtem el a természetfotózást egy jégmadár miatt.</p>
         <p>2019 nyár elején elmentem édesapámmal evezni a Szigetközbe, ahol nyáron vízitúravezetőként dolgozok és akkor láttunk nagyon közelről egy jégmadarat és akkor jutott eszembe, hogy milyen jó lenne, ha tudnék egy saját képet készíteni róla (egy teljesen légből kapott ötletként). Miután ezt eldöntöttem még hónapokig fényképezőgép se volt a kezemben, de utána október körül elkezdtem fotózni. November közepére sikerült is elkészítenem az első viszonylag közeli jégmadár képemet.</p>
         <p>2022 óta foglalkozok komolyabb szinten a fotózással, ebben az évben került sor az első önálló kiállításomra, ebben az évben kerültem be a Szigetközi Természetfotós Egyesületbe, további ebben az évben jelentek meg először képeim újságokban.</p>
         <p>Azóta számos kiállításon jelentek meg képeim a Szigetközi Természetfotós Egyesület tagjaként, továbbá a Turista Magazin, National Geographic, Szigetközélet közösségi média felületein gyakran jelennek meg képeim.</p>
