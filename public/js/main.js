@@ -1,11 +1,11 @@
 const wh = window.innerHeight;
 document.addEventListener("scroll", function(){
-    var vonal = document.getElementById("hr");
+    const line = document.getElementById("hr");
 
-    if (window.scrollY > (wh*0.2)){
-        vonal.style.filter = "opacity(1.0)";
+    if (window.scrollY > (wh*0.3)){
+        line.classList.add("show")
     }
     else{
-        vonal.style.filter = "opacity(0.0)";
+       line.classList.remove("show")
     }
 });
