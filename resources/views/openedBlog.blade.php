@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/blog.css">
     <link rel="stylesheet" href="../css/scrollbar.css">
-    <link rel="stylesheet" href="../css/footer.css">
     <title>Sipos Bálint - Kezdőlap</title>
 </head>
 <body id="page">
@@ -91,46 +90,13 @@
     </div>
     @endforeach
 
-    <div class="col">
-    <div class="card" aria-hidden="true">
-    <div class="card-body">
-    <h5 class="card-title placeholder-glow">
-      <span class="placeholder col-6"></span>
-    </h5>
-    <p class="card-text placeholder-glow">
-      <span class="placeholder col-7"></span>
-      <span class="placeholder col-4"></span>
-      <span class="placeholder col-4"></span>
-      <span class="placeholder col-6"></span>
-      <span class="placeholder col-8"></span>
-    </p>
-    <a class="btn btn-primary disabled placeholder col-6" aria-disabled="true"></a>
-  </div>
-</div>
-    </div>
+
   </div>
   
   </main>
 
-  <footer id="footer">
-    <div class="row">
-      <div class="col">
-        Logó:
-        <ul>
-            <li><a href="https://vipix.hu/" target="_blank">VIPIX Grafikai Stúdió</a></li>
-        </ul>
-      </div>
 
-      <div class="col">
-        <ul>
-          <li>Az oldalt készítette: Sipos Bálint</li>
-          <li>Cím: 9200, Mosonmagyaróvár Gát utca 45/b</li>
-          <li><a href="/contact">Elérhetőségek</a></li>
-        </ul>    
-      </div>
-    </div>
-  </footer>
-
+  <x-base-footer/>
   <script src="js/main.js"></script>
 </body>
 </html>
