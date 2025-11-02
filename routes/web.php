@@ -10,6 +10,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\SubController;
 use App\Http\Controllers\webshopController;
 use App\Http\Controllers\webshopLoginController;
+use App\Http\Controllers\NewsletterController;
 
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::delete('/logout', [LoginController::class, 'destroy']);
@@ -67,6 +68,8 @@ Route::post('/rm-sub', [SubController::class, 'delete'] );
 Route::post('/send-email-to-subs', [MailController::class, 'sendMailToSub']);
 
 Route::get('/newBlog-email', [MailController::class, 'newBlogToMail']);
+
+Route::get('/save-sent-newsletter', [NewsletterController::class, 'saveSentNewsletter']);
 
 
 //Webshop

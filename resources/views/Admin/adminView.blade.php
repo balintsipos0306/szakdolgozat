@@ -101,21 +101,41 @@
   </header>
 
   <main>
-    <h1>Körlevél írása</h1>
+    <h1>Körlevelek</h1>
 
-    <form id="form" action="/send-email-to-subs" method="POST">
-    @csrf
-      <div class="mb-3">
-      <label for="Title" class="form-label">Tárgy</label>
-      <input type="text" class="form-control" name="title" required>
-      </div>
-      <div class="mb-3">
-      <label for="text" class="form-label">Szöveg</label>
-      <textarea class="form-control" rows="5" name="text" required></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary">Küldés</button>
-    </form>
+    <div class="container" id="newOrEditEmail">
+      <x-new-letter/>
+    </div>
 
+    @php
+      $emails = DB::table('newsletter')->get();
+    @endphp
+
+
+    <div class="container" id =table>
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Tárgy</th>
+          <th scope="col">Szöveg</th>
+          <th scope="col">Címzett</th>
+          <th scope="col">Küldés időpontja</th>
+        </tr>
+        </thead>
+        <tbody>
+          @foreach ($emails as $mail)
+            <tr>
+              <th scope="row">{{$mail->id}}</th>
+              <th scope="row">{{ $mail->title }}</th>
+              <th scope="row">{{ $mail->body }}</th>
+              <th scope="row">{{ json_decode($mail->emails) }}</th>
+              <th scope="row">{{ $mail->created_at }}</th>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
   </main>
 
 </body>

@@ -134,7 +134,10 @@ class MailController extends Controller
         if (!$mail->send()){
             return back()->with('error', 'Körlevél elküldése sikertelen.');
         }
-        return back()->with('success', 'Körlevél sikeresen elküldve');
+        $emails = $subs->pluck('email')->toArray();
+        return redirect()->action([NewsletterController::class, 'saveSentNewsletter'], ['title'=> $title,
+                                                                                            'body' => $text,
+                                                                                            'emails' => $emails]);
     }
 
     public function newBlogToMail(Request $request){

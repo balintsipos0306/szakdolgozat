@@ -1,10 +1,30 @@
-#form{
-    width:80%;
+main{
     margin: auto;
+    width: 95%;
+}
+
+#form{
     margin-top: 2em;
     padding: 2em;
     border-radius: 15px;
-    box-shadow: 20px 20px 50px grey;
+    box-shadow: 8px 8px 25px grey;
+}
+
+#newOrEditEmail {
+    float: left;
+    width: 30%;
+}
+
+#table{
+    float: right;
+    width: 70%;
+    margin-top: 2em;
+    padding: 2em;
+    border-radius: 15px;
+    box-shadow: 8px 8px 25px grey;
+    height: 26em;
+    overflow: scroll;
+    z-index: 1000;
 }
 
 .mb-3{
