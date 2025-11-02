@@ -172,7 +172,7 @@
   </div>
 </div>
 
-  <x-webshop-header>
+  <x-webshop-header/>
 
   <main>
     <div class="container">

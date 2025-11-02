@@ -72,52 +72,11 @@
 
         <hr>
 
-        <form action="" method="POST">
-            @csrf
-            <div class="row g-2">
-                <div class="col-auto">
-                    <label for="firstname" class="form-label"><strong>Vezetéknév</strong></label>
-                    <input type="text" class="form-control" name="lastname" required>
-                </div>
-                <div class="col-auto">
-                    <label for="firstname" class="form-label"><strong>Keresztnév</strong></label>
-                    <input type="text" class="form-control" name="firstname" required>
-                </div>
-            </div>
-            <div class="row g-4">
-                <div class="col-auto">
-                    <label for="irsz" class="form-label"><strong>Irányítószám</strong></label>
-                    <input type="number" class="form-control" name="irsz" required>
-                </div>
-                <div class="col-auto">
-                    <label for="city" class="form-label"><strong>Város</strong></label>
-                    <input type="text" class="form-control" name="city" required>
-                </div>
-                <div class="col-auto">
-                    <label for="street" class="form-label"><strong>Utca</strong></label>
-                    <input type="text" class="form-control" name="street" required>
-                </div>
-                <div class="col-auto">
-                    <label for="housenum" class="form-label"><strong>Házszám</strong></label>
-                    <input type="text" class="form-control" name="housenum" required>
-                </div>
-            </div>
-        </form>
-
-        <div class="container" id="pay">
-            <script src="https://www.paypal.com/sdk/js?client-id=BAAFzOmF0PphAtzpL10wsApyV2etCuuWPpbq3w9592H6bLp1ETg6EQB0QrnUpgcr5HbOz0B8IsUdJkucKo&components=hosted-buttons&disable-funding=venmo&currency=HUF"></script>
-            <div id="paypal-container-ZFRD6HLZVY5KS"></div>
-            <script>
-                paypal.HostedButtons({
-                    hostedButtonId: "ZFRD6HLZVY5KS",
-                }).render("#paypal-container-ZFRD6HLZVY5KS")
-            </script>
-        </div>
+        <h3>Jelenleg a webshopos fizetés nem üzemel, kérlek támogass <a href="https://revolut.me/bsipos03">revoluton</a></h3>
     </div>
 
   </main>
-
-    <x-base-footer/>
+  <x-base-footer/>
 
 </body>
 </html>
