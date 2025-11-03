@@ -37,12 +37,14 @@
     <div class="container">
         @php
             $cart = DB::table('cart')->where('userID', Auth()->user()->id)->get();
+            $szum = 0;
         @endphp
 
         <div class="container" id="cart">
         @foreach ($cart as $item)
             @php
                 $items = DB::table('webshop')->where('id', $item->itemID)->first();
+                $szum += $items->price;
             @endphp
             <div class="row">
                 <div class="col">
@@ -70,13 +72,18 @@
         @endforeach
         </div>
 
+        <div class="container" id="szum">
+            <p>Végősszeg: {{ $szum }} Ft</p>
+        </div>
         <hr>
-
-        <h3>Jelenleg a webshopos fizetés nem üzemel, kérlek támogass <a href="https://revolut.me/bsipos03">revoluton</a></h3>
+        <h3>Jelenleg a webshopos fizetés nem üzemel, kérlek támogass <a href="https://revolut.me/bsipos03">Revoluton</a></h3>
     </div>
 
   </main>
-  <x-base-footer/>
+    
+  <div style= "position: relative; margin-top: 2em">
+    <x-base-footer/>
+  </div>
 
 </body>
 </html>

@@ -1,11 +1,28 @@
 main{
     width: 100%;
     overflow: hidden;
+    margin-bottom: 5em;
 }
 
 main>.container{
     width: 100%;
     padding-top: 3em;
+    margin-bottom: 5em;
+}
+
+#szum{
+    width: 50%;
+    margin: auto;
+    text-align: end;
+    display: flex;
+    justify-content: end;
+
+}
+
+#szum>p{
+    margin-top: 3em;
+    width: fit-content;
+    border-top: 1px solid gray;
 }
 
 #cart{
@@ -37,16 +54,7 @@ form>.row:nth-last-child(2), form>.row:nth-last-child(1){
     margin: auto;
 }
 
-main h1{
+main h1, h3{
     text-align: center;
     margin: auto;
-}
-
-#pay{
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 20px 20px 50px lightgrey;
-    margin: auto;
-    margin-top: 5em;
-    width: fit-content;
 }
