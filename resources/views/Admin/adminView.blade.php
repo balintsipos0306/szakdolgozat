@@ -62,14 +62,14 @@
       });
     </script>
   @endif
-
+  <x-view-email/>
   <x-admin-header/>
 
   <main>
     <h1>Körlevelek</h1>
 
     <div class="container" id="newOrEditEmail">
-      <x-new-letter/>
+        <x-new-letter/>
     </div>
 
     @php
@@ -90,7 +90,14 @@
         </thead>
         <tbody>
           @foreach ($emails as $mail)
-            <tr>
+            <tr data-bs-toggle="modal"
+              data-bs-target="#viewEmail"
+              data-id="{{ $mail->id }}"
+              data-title="{{ $mail->title }}"
+              data-body="{{ $mail->body }}"
+              data-emails="{{ json_decode($mail->emails) }}"
+              data-created="{{ $mail->created_at }}"
+            >
               <th scope="row">{{$mail->id}}</th>
               <th scope="row">{{ $mail->title }}</th>
               <th scope="row">{{ $mail->body }}</th>
