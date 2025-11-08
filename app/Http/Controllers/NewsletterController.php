@@ -17,7 +17,7 @@ class NewsletterController extends Controller
         Newsletter::create([
             'title' => $title,
             'body' => $body,
-            'emails' => json_encode($emails),
+            'emails' => $emails,
         ]);
 
         return redirect()->back()->with('success', 'Körlevél sikeresen elküldve.');

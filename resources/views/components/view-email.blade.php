@@ -9,7 +9,22 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Adatok betöltése...
+                <p>
+                    <strong>Tárgy:</strong>
+                    <span id="emailSubject"></span>
+                </p>
+                <p>
+                    <strong>Címzettek:</strong>
+                </p>
+                <ul id="emailRecipients"></ul>
+                <p>
+                    <strong>Szöveg:</strong>
+                </p>
+                <div id="emailBody" class="border rounded p-2 mb-3 bg-light"></div>
+                <p>
+                    <strong>Küldés ideje:</strong>
+                    <span id="emailCreated"></span>
+                </p>
             </div>
         </div>
     </div>

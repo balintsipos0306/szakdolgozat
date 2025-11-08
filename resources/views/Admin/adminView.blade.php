@@ -1,3 +1,5 @@
+@php use Illuminate\Support\Str; @endphp
+
 <!DOCTYPE html>
 <html lang="hu">
 <head>
@@ -90,19 +92,27 @@
         </thead>
         <tbody>
           @foreach ($emails as $mail)
+            @php
+              $recipients = json_decode($mail->emails, true) ?? [];
+              $recipientDisplay = implode(', ', array_slice($recipients, 0, 2));
+              if (count($recipients) > 2) {
+                  $recipientDisplay .= '...';
+              }
+            @endphp
+
             <tr data-bs-toggle="modal"
               data-bs-target="#viewEmail"
               data-id="{{ $mail->id }}"
               data-title="{{ $mail->title }}"
               data-body="{{ $mail->body }}"
-              data-emails="{{ json_decode($mail->emails) }}"
+              data-emails="{{$mail->emails }}"
               data-created="{{ $mail->created_at }}"
             >
-              <th scope="row">{{$mail->id}}</th>
-              <th scope="row">{{ $mail->title }}</th>
-              <th scope="row">{{ $mail->body }}</th>
-              <th scope="row">{{ json_decode($mail->emails) }}</th>
-              <th scope="row">{{ $mail->created_at }}</th>
+              <td>{{ $mail->id }}</td>
+              <td>{{ Str::limit($mail->title, 40) }}</td>
+              <td>{{ Str::limit($mail->body, 60) }}</td>
+              <td>{{ $recipientDisplay }}...</td>
+              <td>{{ $mail->created_at }}</td>
             </tr>
           @endforeach
         </tbody>
