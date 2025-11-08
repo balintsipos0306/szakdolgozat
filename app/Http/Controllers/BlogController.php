@@ -10,7 +10,6 @@ class BlogController extends Controller
 {
     public function store(Request $request)
     {
-        // Validálás
         $request->validate([
             'title' => 'required|string|max:255',
             'text' => 'required|string',
@@ -21,7 +20,6 @@ class BlogController extends Controller
         // Kép feltöltése és tárolása
         $imagePath = $request->file('image')->store('blogImages', 'public');
 
-        // Új rekord mentése az adatbázisba
         Blog::create([
             'title' => $request->title,
             'text' => $request->text,
@@ -30,13 +28,13 @@ class BlogController extends Controller
         ]);
 
         $new = DB::table('blogs')->where('title', $request->title)->where('text', $request->text)->first();
-        $id = $new->id;
 
         if (!$new){
             return back()->with('error', 'A blog feltöltése sikertelen.');
         }
 
-
+        $id = $new->id;
+        // Feliratkozott fiókok értesítése
         if($request->isPublished == "Publikált"){
             return redirect()->action([MailController::class, 'newBlogToMail'], ['title' => $request->title,
                                                                                                         'text' => $request->text,
@@ -67,7 +65,6 @@ class BlogController extends Controller
 
     public function update(Request $request)
     {
-        // Validálás
         $request->validate([
             'id' => 'required|int',
             'title' => 'required|string|max:255',
@@ -87,7 +84,6 @@ class BlogController extends Controller
             $image_path = $request->file('image')->store('blogImages', 'public');
         }
 
-        // Új rekord mentése az adatbázisba
         DB::table('blogs')->where('id', $request->id)->update([
             'title' => $request->title,
             'text' => $request->text,
@@ -96,11 +92,11 @@ class BlogController extends Controller
         ]);
 
         $updated = DB::table('blogs')->where('title', $request->title)->where('text', $request->text)->first();
-        $id = $updated->id;
-
+        
         if(!$updated){
             return back()->with('error', 'Hiba a blog mentésekor');
         }
+        $id = $updated->id;
 
         if($request->isPublished == "Publikált" && $oldblog->isPublished == "Piszkozat"){
             return redirect()->action([MailController::class, 'newBlogToMail'], ['title' => $request->title,
