@@ -10,7 +10,6 @@ class GalleryController extends Controller
 {
     public function store(Request $request)
     {
-        // Validálás
         $request->validate([
             'category' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
@@ -19,7 +18,6 @@ class GalleryController extends Controller
         // Kép feltöltése és tárolása
         $imagePath = $request->file('image')->store('images', 'public');
 
-        // Új rekord mentése az adatbázisba
         Gallery::create([
             'category' => $request->category,
             'image_path' => $imagePath,

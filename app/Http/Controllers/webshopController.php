@@ -12,7 +12,6 @@ class webshopController extends Controller
 {
     public function store(Request $request)
     {
-        // Validálás
         $request->validate([
             'title' => 'required|string|max:255',
             'text' => 'required|string',
@@ -22,7 +21,6 @@ class webshopController extends Controller
         
         $imagePath = $request->file('image')->store('webshop_items', 'public');
 
-        // Új rekord mentése az adatbázisba
         try{
         Webshop::create([
             'name' => $request->title,
@@ -55,7 +53,6 @@ class webshopController extends Controller
 
     public function update(Request $request)
     {
-        // Validálás
         $request->validate([
             'id' => 'required|int',
             'title' => 'required|string|max:255',
@@ -75,7 +72,6 @@ class webshopController extends Controller
             $image_path = $request->file('image')->store('webshop_items', 'public');
         }
 
-        // Új rekord mentése az adatbázisba
         DB::table('webshop')->where('id', $request->id)->update([
             'name' => $request->title,
             'text' => $request->text,
@@ -94,7 +90,6 @@ class webshopController extends Controller
         ]);
         $role='customer';
 
-        // Új rekord mentése az adatbázisba
         User::create([
             'name' => $request->name,
             'email' => $request->email,
