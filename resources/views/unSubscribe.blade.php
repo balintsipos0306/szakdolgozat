@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/unsub.css">
 </head>
 <body>
+    <x-system-feedback/>
     <div class="main">
         <div class="logoholder">
             <img src="../webp/tinywow_Logó.webp">

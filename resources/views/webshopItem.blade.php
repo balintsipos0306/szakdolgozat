@@ -23,6 +23,7 @@
   <script src="../../js/adminLogin.js"></script>
   <script src="../../js/loader.js"></script>
 
+  <x-system-feedback/>
   <x-registration-modal/>
   <x-login-modal/>
   <x-cart-modal/>

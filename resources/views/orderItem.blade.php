@@ -25,6 +25,7 @@
       <img id = "logo" src="../../webp/tinywow_Logó.webp" alt="">
     </div>
   </header>
+  <x-system-feedback/>
 
   <main>
     @if (!empty(Auth()->user()->name))

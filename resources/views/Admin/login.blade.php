@@ -15,31 +15,7 @@
     <img src="../webp/tinywow_DSC_9413_65859380.webp" alt="">
     </div>
 
-    @if ($errors->any())
-        <div class="toast-container position-fixed top-0 end-0 p-3">
-            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                <strong class="me-auto text-danger">Hiba</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                @foreach ($errors->all() as $error)
-                    {{ $error }}
-                @endforeach
-                </div>
-            </div>
-        </div>
-        <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const toastElement = document.querySelector('.toast');
-            if (toastElement) {
-                const toast = new bootstrap.Toast(toastElement, { autohide: false });
-                toast.show();
-            }
-        });
-        </script>
-        @endif
-
+    <x-system-feedback/>
     <div class="container">
         <h1>Belépés</h1>
         <form action="/login" method="POST">
