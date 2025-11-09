@@ -18,7 +18,5 @@ document.addEventListener("DOMContentLoaded", function() {
             hamburger.classList.remove("active");
             navMenu.classList.remove("active");
         }
-    } else {
-        console.log("Hamburger vagy menü nem található");
     }
 });

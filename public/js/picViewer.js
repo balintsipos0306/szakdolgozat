@@ -1,9 +1,6 @@
 function showPic(element){
 
-    if (window.innerWidth <= 576){
-
-    }
-    else{
+    if (window.innerWidth > 576){
 
     const overlay = document.createElement("div");
     overlay.id = "overlay";
