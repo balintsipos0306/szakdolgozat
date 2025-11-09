@@ -12,14 +12,19 @@ use App\Http\Controllers\webshopController;
 use App\Http\Controllers\webshopLoginController;
 use App\Http\Controllers\NewsletterController;
 
-Route::post('/login', [LoginController::class, 'authenticate']);
-Route::delete('/logout', [LoginController::class, 'destroy']);
-
-Route::post('/mail', [MailController::class, 'sendMail']);
-
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+Route::delete('/logout', [LoginController::class, 'destroy']);
+
+Route::get('/login', function(){
+    return view('Admin/login');
+});
+
+// Galéria
 
 Route::get('/gallery/nature', function () {
     return view('Gallery/gallery');
@@ -37,15 +42,23 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::get('/login', function(){
-    return view('Admin/login');
-});
+// Blog
 
 Route::get('/blog', function(){
     return view('blog');
 });
 
+Route::get('/blog/{id}', function($id) {
+    return view('openedBlog', ['id' => $id]);
+})->name('blog.open');
+
+
+// Email  / körlevél
+
+Route::get('/newBlog-email', [MailController::class, 'newBlogToMail']);
+
 Route::get('/subEmail', [MailController::class, 'Subscribe']);
+
 Route::get('/regist', [MailController::class, 'newAcc']);
 
 
@@ -53,9 +66,6 @@ Route::get('/sub', [SubController::class, 'store']); //Regisztrációkor való h
 
 Route::post('/sub', [SubController::class, 'store']);
 
-Route::get('/blog/{id}', function($id) {
-    return view('openedBlog', ['id' => $id]);
-})->name('blog.open');
 
 Route::get('/unSubscribe', function(Request $request){
     $email = $request->query('email');
@@ -65,14 +75,15 @@ Route::get('/unSubscribe', function(Request $request){
 
 Route::post('/rm-sub', [SubController::class, 'delete'] );
 
-Route::post('/send-email-to-subs', [MailController::class, 'sendMailToSub']);
+Route::post('/mail', [MailController::class, 'sendMail']);
 
-Route::get('/newBlog-email', [MailController::class, 'newBlogToMail']);
+Route::post('/send-email-to-subs', [MailController::class, 'sendMailToSub']);
 
 Route::get('/save-sent-newsletter', [NewsletterController::class, 'saveSentNewsletter']);
 
 
 //Webshop
+
 Route::get('/shop', function(){
     $items = DB::table('webshop')->get();
     return view("webshop", compact('items'));
@@ -97,6 +108,7 @@ Route::post('delete-from-cart', [webshopController::class, 'deleteFromCart']);
 Route::post('rm-acc', [webshopController::class, 'deleteAcc']);
 
 //Admin oldal
+
 Route::middleware('CustomAuth') -> group(function (){
     Route::get('/admin', function (){
         return view('Admin/adminView');
