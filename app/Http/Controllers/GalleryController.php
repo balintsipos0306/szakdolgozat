@@ -23,7 +23,7 @@ class GalleryController extends Controller
             'image_path' => $imagePath,
         ]);
 
-        return redirect()->back()->with('success', 'A kép sikeresen feltöltve.');
+        return back()->with('success', 'A kép sikeresen feltöltve.');
     }
 
     public function delete(Request $request)
@@ -37,10 +37,10 @@ class GalleryController extends Controller
             if(file_exists($filePath))
             {
                 unlink($filePath);
-                DB::table('gallery')->where('id', $id)->delete();
-                return redirect()->back()->with('success', 'A kép sikeresen törölve lett.');
             }
+            DB::table('gallery')->where('id', $id)->delete();
+            return back()->with('success', 'A kép sikeresen törölve lett.');
         }
-        return redirect()->back()->with('failed', 'A kép törlése sikertelen');
+        return back()->with('error', 'A kép törlése sikertelen');
     }
 }

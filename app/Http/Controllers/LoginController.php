@@ -18,7 +18,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
             return redirect()->intended('/admin');
         }
-        return back()->withErrors(['login' => 'Helytelen felhasználónév vagy jelszó']);
+        return back()->with('error', 'Helytelen felhasználónév vagy jelszó');
     }
     public function destroy(Request $request)
     {

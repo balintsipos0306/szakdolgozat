@@ -22,14 +22,14 @@ class webshopController extends Controller
         $imagePath = $request->file('image')->store('webshop_items', 'public');
 
         try{
-        Webshop::create([
-            'name' => $request->title,
-            'text' => $request->text,
-            'image_path' => $imagePath,
-            'price' => $request->price,
-        ]);
+            Webshop::create([
+                'name' => $request->title,
+                'text' => $request->text,
+                'image_path' => $imagePath,
+                'price' => $request->price,
+            ]);
         }catch(\Exception $e){
-            return back()->withErrors('error', 'Hiba a termék feltöltésekor');
+            return back()->with('error', 'Hiba a termék feltöltésekor');
         }
         return back()->with('success', 'Termék feltöltése sikeres');
     }
@@ -40,15 +40,15 @@ class webshopController extends Controller
 
         if($item  && !empty($item->image_path))
         {
-            $file_path = public_path('storage/' . $item->image_path);
-            if (file_exists($file_path))
+            $filePath = public_path('storage/' . $item->image_path);
+            if (file_exists($filePath))
             {
-                unlink($file_path);
-                DB::table('webshop')->where('id', $id)->delete();
-                return back()->with('success', 'A termék törlése sikeres');
+                unlink($filePath);
             }
+            DB::table('webshop')->where('id', $id)->delete();
+            return back()->with('success', 'A termék törlése sikeres');
         }
-        return back()->withError('failed', 'A termék törlése sikertelen');
+        return back()->with('error', 'A termék törlése sikertelen');
     }
 
     public function update(Request $request)
@@ -62,22 +62,26 @@ class webshopController extends Controller
         ]);
         
         $oldItem = DB::table('webshop')->where('id', $request->id)->first();
-        $image_path = $oldItem->image_path;
-        $file_path = public_path('storage/' . $oldItem->image_path);
+        $imagePath = $oldItem->image_path;
+        $filePath = public_path('storage/' . $oldItem->image_path);
 
         // Új kép feltöltése, régi törlése
         if($request->hasFile('image'))
         {
-            unlink($file_path);
-            $image_path = $request->file('image')->store('webshop_items', 'public');
+            unlink($filePath);
+            $imagePath = $request->file('image')->store('webshop_items', 'public');
         }
 
-        DB::table('webshop')->where('id', $request->id)->update([
-            'name' => $request->title,
-            'text' => $request->text,
-            'image_path' => $image_path,
-            'price' => $request->price
-        ]);
+        try{
+            DB::table('webshop')->where('id', $request->id)->update([
+                'name' => $request->title,
+                'text' => $request->text,
+                'image_path' => $imagePath,
+                'price' => $request->price
+            ]);
+        }catch(\Exception $e){
+            return back()->with('error', 'Hiba a termék módosításakor');
+        }
 
         return back()->with('success', 'Termék módosítása sikeres');
     }
@@ -90,21 +94,29 @@ class webshopController extends Controller
         ]);
         $role='customer';
 
+        try{
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'role' => $role,
             'password' => $request->password
         ]);
+        }catch(\Exception $e){
+            return back()->with('error', 'Hiba az adatok mentésekor');
+        }
         
         return redirect()->action([MailController::class, 'newAcc'], ['email' => $request->email, 'name'=> $request->name, 'subsbcribe' => $request->checkbox]);
     }
 
     public function addToCart(Request $request){
-        Cart::create([
-            'userID' => $request->userID,
-            'itemID' => $request->itemID,
-        ]);
+        try{
+            Cart::create([
+                'userID' => $request->userID,
+                'itemID' => $request->itemID,
+            ]);
+        }catch(\Exception $e){
+            return back()->with('error', 'Sikertelen kosárba helyezés');
+        }
 
         return back()->with('success', 'Termék a kosárba helyezve');
     }
@@ -119,10 +131,9 @@ class webshopController extends Controller
         
         if(!empty($selectedItem)){
             DB::table('cart')->where('userID', $request->userID)->where('itemID', $request->itemID)->delete();
-            return redirect()->back()->with('Success', 'Sikeres törlés');
+            return back()->with('success', 'Sikeres törlés');
         }
-        return redirect()->back()->withErrors('Failed', 'Sikertelen törlés');
-
+        return back()->with('error', 'Sikertelen törlés');
     }
 
     public function deleteAcc(Request $request){
@@ -135,9 +146,9 @@ class webshopController extends Controller
         
         if(!empty($acc)){
             DB::table('users')->where('name', $request->name)->where('email', $request->email)->delete();
-            return redirect()->back()->with('Success', 'Sikeres törlés');
+            return back()->with('Success', 'Sikeres törlés');
         }
-        return redirect()->back()->withErrors(['delete' => 'Fiók törlése sikertelen']);
+        return back()->with('error', 'Fiók törlése sikertelen');
     }
     
     public function search(Request $request){

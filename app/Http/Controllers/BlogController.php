@@ -20,29 +20,26 @@ class BlogController extends Controller
         // Kép feltöltése és tárolása
         $imagePath = $request->file('image')->store('blogImages', 'public');
 
-        Blog::create([
-            'title' => $request->title,
-            'text' => $request->text,
-            'image_path' => $imagePath,
-            'isPublished' => $request->isPublished
-        ]);
-
-        $new = DB::table('blogs')->where('title', $request->title)->where('text', $request->text)->first();
-
-        if (!$new){
+        try{
+            $blog = Blog::create([
+                'title' => $request->title,
+                'text' => $request->text,
+                'image_path' => $imagePath,
+                'isPublished' => $request->isPublished
+            ]);
+        }catch(\Exception $e){
             return back()->with('error', 'A blog feltöltése sikertelen.');
         }
 
-        $id = $new->id;
         // Feliratkozott fiókok értesítése
         if($request->isPublished == "Publikált"){
             return redirect()->action([MailController::class, 'newBlogToMail'], ['title' => $request->title,
                                                                                                         'text' => $request->text,
                                                                                                         'imagePath' => $imagePath,
-                                                                                                        'id'=>$id,
+                                                                                                        'id'=>$blog->id,
                                                                                                         ]);
         }
-        return redirect()->back()->with('success', 'A blog sikeresen feltöltve.');
+        return back()->with('success', 'A blog sikeresen feltöltve.');
     }
 
     public function delete(Request $request)
@@ -52,15 +49,15 @@ class BlogController extends Controller
 
         if($blog  && !empty($blog->image_path))
         {
-            $file_path = public_path('storage/' . $blog->image_path);
-            if (file_exists($file_path))
+            $filePath = public_path('storage/' . $blog->image_path);
+            if (file_exists($filePath))
             {
-                unlink($file_path);
-                DB::table('blogs')->where('id', $id)->delete();
-                return redirect()->back()->with('success', 'A blog törlése sikeres');
+                unlink($filePath);
             }
+            DB::table('blogs')->where('id', $id)->delete();
+            return back()->with('success', 'A blog törlése sikeres');
         }
-        return redirect()->back()->with('failed', 'A blog törlése sikertelen');
+        return back()->with('error', 'A blog törlése sikertelen');
     }
 
     public function update(Request $request)
@@ -74,35 +71,32 @@ class BlogController extends Controller
         ]);
 
         $oldblog = DB::table('blogs')->where('id', $request->id)->first();
-        $image_path = $oldblog->image_path;
-        $file_path = public_path('storage/' . $oldblog->image_path);
+        $imagePath = $oldblog->image_path;
+        $filePath = public_path('storage/' . $oldblog->image_path);
 
         // Új kép feltöltése, régi törlése
         if($request->hasFile('image'))
         {
-            unlink($file_path);
-            $image_path = $request->file('image')->store('blogImages', 'public');
+            unlink($filePath);
+            $imagePath = $request->file('image')->store('blogImages', 'public');
         }
 
-        DB::table('blogs')->where('id', $request->id)->update([
-            'title' => $request->title,
-            'text' => $request->text,
-            'image_path' => $image_path,
-            'isPublished' => $request->isPublished
-        ]);
-
-        $updated = DB::table('blogs')->where('title', $request->title)->where('text', $request->text)->first();
-        
-        if(!$updated){
+        try{
+            DB::table('blogs')->where('id', $request->id)->update([
+                    'title' => $request->title,
+                    'text' => $request->text,
+                    'image_path' => $imagePath,
+                    'isPublished' => $request->isPublished
+                ]);
+        }catch(\Exception $e){
             return back()->with('error', 'Hiba a blog mentésekor');
         }
-        $id = $updated->id;
 
         if($request->isPublished == "Publikált" && $oldblog->isPublished == "Piszkozat"){
             return redirect()->action([MailController::class, 'newBlogToMail'], ['title' => $request->title,
                                                                                                         'text' => $request->text,
-                                                                                                        'imagePath' => $image_path,
-                                                                                                        'id'=>$id,
+                                                                                                        'imagePath' => $imagePath,
+                                                                                                        'id'=>$request->id,
                                                                                                         ]);
         }
         return redirect('/admin/blog')->with('success', 'A blog módosítása sikeres');
