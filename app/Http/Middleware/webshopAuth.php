@@ -20,7 +20,6 @@ class webshopAuth
             return $next($request);
         }
 
-        // Ha a felhasználó nem customer, átirányítja a webshop főoldalára
-        return redirect()->back()->withErrors(['access_denied' => 'Nincs jogosultságod az oldal megtekintéséhez.']);
+        return back()->withErrors('error' , 'Nincs jogosultságod az oldal megtekintéséhez.');
     }
 }

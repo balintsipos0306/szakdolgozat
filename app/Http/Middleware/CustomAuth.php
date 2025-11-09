@@ -21,6 +21,6 @@ class CustomAuth
         }
 
         // Ha a felhasználó nem admin, átirányítja a főoldalra
-        return redirect('/')->withErrors(['access_denied' => 'Nincs jogosultságod az oldal megtekintéséhez.']);
+        return redirect('/')->with('error', 'Nincs jogosultságod az oldal megtekintéséhez.');
     }
 }
