@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use PHPMailer\PHPMailer\PHPMailer;
-use Illuminate\Support\Facades\DB;
+use App\Models\Subscription;
 
 class MailController extends Controller
 {
@@ -64,7 +64,7 @@ class MailController extends Controller
         $title = $request->input('title');
         $text = $request->input('text');
         
-        $subs = DB::table('subscription')->get();
+        $subs = Subscription::all();
         foreach($subs as $subscriber){
             $body='
             <div style="margin: auto; padding: 1em; color:#3F4E4F; margin: 1em; border-radius: 10px;font-family: Trebuchet MS; box-shadow: 20px 20px 50px grey;">
@@ -95,7 +95,7 @@ class MailController extends Controller
         $imagePath = public_path('storage/' . $request->input('imagePath'));
         $id = $request->input('id');
         
-        $subs = DB::table('subscription')->get();
+        $subs = Subscription::all();
         foreach($subs as $subscriber){
             $body='
             <div style="margin: auto; padding: 1em; color:#3F4E4F; margin: 1em; border-radius: 10px;font-family: Trebuchet MS; box-shadow: 20px 20px 50px grey;">
@@ -120,7 +120,7 @@ class MailController extends Controller
             $this->mailHelper($subscriber->email, $subscriber->name, $title, $body, $imagePath);
         }
 
-        return back()->with('success', 'Blog feltöltve - email elküldve');
+        return redirect('/admin/blog')->with('success', 'Blog feltöltve - email elküldve');
     }
 
 
@@ -172,10 +172,10 @@ class MailController extends Controller
             $mail->send();
         }catch(\Exception $e){
             $mail->smtpClose();
-            return back()->with('error', 'Hiba az email elküldésekor');
+            return redirect()->back()->with('error', 'Hiba az email elküldésekor');
         }
         
         $mail->smtpClose();
-        return back()->with('success', 'Email sikeresen elküldve');
+        return redirect()->back()->with('success', 'Email sikeresen elküldve');
     }
 }

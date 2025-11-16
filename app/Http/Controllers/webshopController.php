@@ -6,7 +6,6 @@ use App\Models\Webshop;
 use App\Models\User;
 use App\Models\Cart;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class webshopController extends Controller
@@ -30,14 +29,14 @@ class webshopController extends Controller
                 'price' => $request->price,
             ]);
         }catch(\Exception $e){
-            return back()->with('error', 'Hiba a termék feltöltésekor');
+            return redirect()->back()->with('error', 'Hiba a termék feltöltésekor');
         }
-        return back()->with('success', 'Termék feltöltése sikeres');
+        return redirect()->back()->with('success', 'Termék feltöltése sikeres');
     }
 
     public function delete(Request $request){
         $id = $request->id;
-        $item = DB::table('webshop')->where('id', $id)->first();
+        $item = Webshop::find($id);
 
         if($item  && !empty($item->image_path))
         {
@@ -46,10 +45,10 @@ class webshopController extends Controller
             {
                 unlink($filePath);
             }
-            DB::table('webshop')->where('id', $id)->delete();
-            return back()->with('success', 'A termék törlése sikeres');
+            $item->delete();
+            return redirect()->back()->with('success', 'A termék törlése sikeres');
         }
-        return back()->with('error', 'A termék törlése sikertelen');
+        return redirect()->back()->with('error', 'A termék törlése sikertelen');
     }
 
     public function update(Request $request)
@@ -62,7 +61,7 @@ class webshopController extends Controller
             'price' => 'required|int',
         ]);
         
-        $oldItem = DB::table('webshop')->where('id', $request->id)->first();
+        $oldItem = Webshop::find($request->id);
         $imagePath = $oldItem->image_path;
         $filePath = public_path('storage/' . $oldItem->image_path);
 
@@ -74,17 +73,17 @@ class webshopController extends Controller
         }
 
         try{
-            DB::table('webshop')->where('id', $request->id)->update([
+            $oldItem->update([
                 'name' => $request->title,
                 'text' => $request->text,
                 'image_path' => $imagePath,
                 'price' => $request->price
             ]);
         }catch(\Exception $e){
-            return back()->with('error', 'Hiba a termék módosításakor');
+            return redirect()->back()->with('error', 'Hiba a termék módosításakor');
         }
 
-        return back()->with('success', 'Termék módosítása sikeres');
+        return redirect()->back()->with('success', 'Termék módosítása sikeres');
     }
 
     public function registrate(Request $request){
@@ -103,7 +102,7 @@ class webshopController extends Controller
             'password' => Hash::make($request->password)
         ]);
         }catch(\Exception $e){
-            return back()->with('error', 'Hiba az adatok mentésekor');
+            return redirect()->back()->with('error', 'Hiba az adatok mentésekor');
         }
         
         return redirect()->action([MailController::class, 'newAcc'], ['email' => $request->email, 'name'=> $request->name, 'subsbcribe' => $request->checkbox]);
@@ -116,10 +115,10 @@ class webshopController extends Controller
                 'itemID' => $request->itemID,
             ]);
         }catch(\Exception $e){
-            return back()->with('error', 'Sikertelen kosárba helyezés');
+            return redirect()->back()->with('error', 'Sikertelen kosárba helyezés');
         }
 
-        return back()->with('success', 'Termék a kosárba helyezve');
+        return redirect()->back()->with('success', 'Termék a kosárba helyezve');
     }
 
     public function deleteFromCart(Request $request){
@@ -128,13 +127,15 @@ class webshopController extends Controller
             'itemID' => 'required|int',
         ]);
 
-        $selectedItem = DB::table('cart')->where('userID', $request->userID)->where('itemID', $request->itemID)->first();
+        $selectedItem = Cart::where('userID', $request->userID)
+                           ->where('itemID', $request->itemID)
+                           ->first();
         
         if(!empty($selectedItem)){
-            DB::table('cart')->where('userID', $request->userID)->where('itemID', $request->itemID)->delete();
-            return back()->with('success', 'Sikeres törlés');
+            $selectedItem->delete();
+            return redirect()->back()->with('success', 'Sikeres törlés');
         }
-        return back()->with('error', 'Sikertelen törlés');
+        return redirect()->back()->with('error', 'Sikertelen törlés');
     }
 
     public function deleteAcc(Request $request){
@@ -143,23 +144,24 @@ class webshopController extends Controller
             'email' => 'required|string',
         ]);
 
-        $acc = DB::table('users')->where('name', $request->name)->where('email', $request->email)->first();
+        $acc = User::where('name', $request->name)
+                  ->where('email', $request->email)
+                  ->first();
         
         if(!empty($acc)){
-            DB::table('users')->where('name', $request->name)->where('email', $request->email)->delete();
-            return back()->with('Success', 'Sikeres törlés');
+            $acc->delete();
+            return redirect()->back()->with('Success', 'Sikeres törlés');
         }
-        return back()->with('error', 'Fiók törlése sikertelen');
+        return redirect()->back()->with('error', 'Fiók törlése sikertelen');
     }
     
     public function search(Request $request){
 
         $searchTerm = $request->input('input');
 
-        $items = DB::table('webshop')
-                ->where('name', 'LIKE', "%{$searchTerm}%")
-                ->orWhere('text', 'LIKE', "%{$searchTerm}%")
-                ->get();
+        $items = Webshop::where('name', 'LIKE', "%{$searchTerm}%")
+                       ->orWhere('text', 'LIKE', "%{$searchTerm}%")
+                       ->get();
     
         return view('webshop', compact('items'));
     }

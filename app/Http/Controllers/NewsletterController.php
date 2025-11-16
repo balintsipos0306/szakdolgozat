@@ -26,9 +26,9 @@ class NewsletterController extends Controller
                 'emails' => $emails,
             ]);
         }catch(\Exception $e){
-            return back()->with('error', 'Hiba a körlevél mentésekor');
+            return redirect()->back()->with('error', 'Hiba a körlevél mentésekor');
         }
 
-        return back()->with('success', 'Körlevél sikeresen elküldve.');
+        return redirect()->back()->with('success', 'Körlevél sikeresen elküldve.');
     }
 }

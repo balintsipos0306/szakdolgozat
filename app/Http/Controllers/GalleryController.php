@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Gallery;
-use Illuminate\Support\Facades\DB;
 
 class GalleryController extends Controller
 {
@@ -23,13 +22,13 @@ class GalleryController extends Controller
             'image_path' => $imagePath,
         ]);
 
-        return back()->with('success', 'A kép sikeresen feltöltve.');
+        return redirect()->back()->with('success', 'A kép sikeresen feltöltve.');
     }
 
     public function delete(Request $request)
     {
         $id = $request->id;
-        $picture = DB::table('gallery')->where('id', $id)->first();
+        $picture = Gallery::find($id);
         
         if($picture && !empty($picture->image_path))
         {
@@ -38,9 +37,9 @@ class GalleryController extends Controller
             {
                 unlink($filePath);
             }
-            DB::table('gallery')->where('id', $id)->delete();
-            return back()->with('success', 'A kép sikeresen törölve lett.');
+            $picture->delete();
+            return redirect()->back()->with('success', 'A kép sikeresen törölve lett.');
         }
-        return back()->with('error', 'A kép törlése sikertelen');
+        return redirect()->back()->with('error', 'A kép törlése sikertelen');
     }
 }

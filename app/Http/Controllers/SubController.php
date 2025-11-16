@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
 use App\Http\Controllers\MailController;
-use Illuminate\Support\Facades\DB;
 
 class SubController extends Controller
 {
@@ -22,7 +21,7 @@ class SubController extends Controller
                 'email' => $request->email,
             ]);
         }catch(\Exception $e){
-            return back()->with('error', 'Hiba az adatok mentésekor');
+            return redirect()->back()->with('error', 'Hiba az adatok mentésekor');
         }
 
         return redirect()->action([MailController::class, 'Subscribe'], ['email' => $request->email, 'name'=> $request->name]);
@@ -30,12 +29,14 @@ class SubController extends Controller
 
     public function delete(Request $request)
     {
-        $exist = DB::table('subscription')->where('name', $request->name)->where('email', $request->email)->first();
+        $exist = Subscription::where('name', $request->name)
+                            ->where('email', $request->email)
+                            ->first();
         if(!empty($exist))
         {
-            DB::table('subscription')->where('name', $request->name)->where('email', $request->email)->delete();
-            return back()->with('success', 'Sikeres Leiratkozás');
+            $exist->delete();
+            return redirect()->back()->with('success', 'Sikeres leiratkozás');
         }
-        return back()->with('error', 'Sikertelen leiratkozás');
+        return redirect()->back()->with('error', 'Sikertelen leiratkozás');
     }
 }
