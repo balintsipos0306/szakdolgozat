@@ -88,8 +88,8 @@ class webshopController extends Controller
 
     public function registrate(Request $request){
          $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|string',
+            'name' => 'required|string|unique:users,name',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|string',
         ]);
         $role='customer';
@@ -109,6 +109,11 @@ class webshopController extends Controller
     }
 
     public function addToCart(Request $request){
+        $request->validate([
+            'userID' => 'required|integer|exists:users,id',
+            'itemID' => 'required|integer|exists:webshop,id',
+        ]);
+
         try{
             Cart::create([
                 'userID' => $request->userID,
@@ -127,9 +132,9 @@ class webshopController extends Controller
             'itemID' => 'required|int',
         ]);
 
-        $selectedItem = Cart::where('userID', $request->userID)
-                           ->where('itemID', $request->itemID)
-                           ->first();
+        $selectedItem = Cart::where('userID', auth()->id())
+                        ->where('itemID', $request->itemID)
+                        ->first();
         
         if(!empty($selectedItem)){
             $selectedItem->delete();
@@ -140,8 +145,8 @@ class webshopController extends Controller
 
     public function deleteAcc(Request $request){
         $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|string',
+            'name' => 'required|string|unique:users,name',
+            'email' => 'required|email|unique:users,email',
         ]);
 
         $acc = User::where('name', $request->name)

@@ -12,7 +12,7 @@ class SubController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|max:255',
+            'email' => 'required|email|unique:subscription,email|max:255',
         ]);
 
         try{
