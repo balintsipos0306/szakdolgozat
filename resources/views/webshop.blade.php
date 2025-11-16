@@ -15,8 +15,6 @@
   <div class="loader"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-  <script src="../js/hamburger.js"></script>
-  <script src="../js/adminLogin.js"></script>
   <script src ="../js/loader.js"></script>
 
   <x-system-feedback/>

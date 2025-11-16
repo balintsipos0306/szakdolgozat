@@ -1,18 +1,17 @@
 <link rel="stylesheet" href="{{ asset('css/baseHeader.css') }}">
 <link rel="stylesheet" href="{{ asset('css/webshopHeader.css') }}">
+<script src="{{asset('js/adminLogin.js')}}"></script>
 
 <div>
-     <header id="myheader">
-    <div class="hamburger">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </div>
+<header id="myheader">
+
+    <x-hamburger-menu/>
+
     <div class= "logoholder">
       <img id = "logo" src="../../webp/tinywow_Logó.webp" alt="">
     </div>
 
-    <nav id = "navv">
+    <nav id = "navigation">
       <ul class="nav justify-content-end" id="menu">
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/">Kezdőlap</a>

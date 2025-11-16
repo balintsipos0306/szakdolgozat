@@ -13,13 +13,13 @@ header{
     width: auto;
 }
 
-#navv{
+#navigation{
     margin-bottom: 2em;
 }
 
 #myheader .container{
     position: absolute;
-    bottom:0em;
+    bottom: -1em;
     left: 50%;
     transform: translateX(-50%); 
     width: 90%;

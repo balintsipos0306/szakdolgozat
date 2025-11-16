@@ -1,14 +1,9 @@
 <link rel="stylesheet" href="{{ asset('css/baseHeader.css') }}">
-<script src="{{asset('js/hamburger.js')}}"></script>
 <script src="{{asset('js/adminLogin.js')}}"></script>
 
 <div>
     <header id="myheader">
-        <div class="hamburger">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-        </div>
+        <x-hamburger-menu/>
 
         <div class= "logoholder">
         <img id = "logo" src= {{ asset('webp/tinywow_Logó.webp') }} alt="">
