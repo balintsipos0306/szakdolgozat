@@ -1,0 +1,16 @@
+#logout{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.imgholder{
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+}
+
+#logo{
+    height: 6em;
+    width: auto;
+}

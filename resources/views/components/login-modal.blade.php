@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="{{asset('css/loginModal.css')}}">
+
 <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

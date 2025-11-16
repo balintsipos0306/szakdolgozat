@@ -1,0 +1,37 @@
+#deleteButton{
+    border: none;
+}
+
+#deleteButton img{
+    height: 0.8em;
+    background-color: transparent;
+}
+
+#cart .container .row .col:last-child{
+    position: relative;
+}
+
+#cart .container .row .col:last-child button{
+    position: absolute;
+    right: 10px;
+}
+
+#sum{
+    position: absolute;
+    bottom: 3em;
+    right: 0;
+    width: 100%;
+}
+
+#sum p{
+    width: 90%;
+    margin: auto;
+    padding-bottom: 1em;
+    text-align: center;
+}
+
+#sum .buttonholder{
+    margin: auto;
+    width: fit-content;
+    text-align: center;
+}

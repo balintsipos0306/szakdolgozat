@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="emailModal.css">
+<link rel="stylesheet" href="{{asset('css/emailModal.css')}}">
 <script src="{{asset('js/adminEmails.js')}}"></script>
 
 <div class="modal fade" id="viewEmail" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">

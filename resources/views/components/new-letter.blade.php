@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="{{asset('css/newLetter.css')}}">
+
 <div>
     <form id="form" action="/send-email-to-subs" method="POST">
     @csrf

@@ -3,13 +3,6 @@ main{
     width: 95%;
 }
 
-#form{
-    margin-top: 2em;
-    padding: 2em;
-    border-radius: 15px;
-    box-shadow: 8px 8px 25px grey;
-}
-
 #newOrEditEmail {
     float: left;
     width: 30%;
@@ -25,8 +18,4 @@ main{
     height: 26em;
     overflow: scroll;
     z-index: 1000;
-}
-
-.mb-3{
-    margin-top: 1em;
 }

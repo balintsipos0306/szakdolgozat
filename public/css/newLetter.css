@@ -1,0 +1,10 @@
+#form{
+    margin-top: 2em;
+    padding: 2em;
+    border-radius: 15px;
+    box-shadow: 8px 8px 25px grey;
+}
+
+.mb-3{
+    margin-top: 1em;
+}
