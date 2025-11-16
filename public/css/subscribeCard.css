@@ -1,0 +1,45 @@
+#sub{
+    margin: auto;
+    width: 60%;
+}
+
+form{
+    text-align: left;
+}
+
+#inputs{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+#inputs>.g{
+    margin: 1em;
+}
+
+form button{
+    float: right;
+}
+
+.card{
+    width: 20em;
+}
+
+@media (max-width: 780px){
+    #inputs{
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #inputs>.g{
+        margin: 0.5em;
+    }
+
+    form{
+        text-align: center;
+    }
+
+    form>button{
+        margin-top: 1em;
+    }
+}

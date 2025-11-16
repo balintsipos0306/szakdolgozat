@@ -1,8 +1,3 @@
-#sub{
-    margin: auto;
-    width: 60%;
-}
-
 #felsorolas{
     margin: auto;
     width: 70%;
@@ -15,27 +10,7 @@ main .row{
     height: 25em;
 }
 
-form{
-    text-align: left;
-}
 
-#inputs{
-    display: flex;
-    align-items: center;
-    justify-content: left;
-}
-
-#inputs>.g{
-    margin: 1em;
-}
-
-form button{
-    float: right;
-}
-
-.card{
-    width: 20em;
-}
 
 #szoveg{
     height: 3em;
@@ -77,23 +52,6 @@ hr{
 }
 
 @media (max-width: 780px){
-    #inputs{
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    #inputs>.g{
-        margin: 0.5em;
-    }
-
-    form{
-        text-align: center;
-    }
-
-    form>button{
-        margin-top: 1em;
-    }
-
     #borito{
         height: 20em;
     }
