@@ -1,0 +1,91 @@
+#myheader .logoholder{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+#logo{
+    display: block;
+    max-height: 10em;
+    width: auto;
+}
+
+main{
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 5em;
+}
+
+main>.container{
+    width: 100%;
+    padding-top: 3em;
+    margin-bottom: 5em;
+}
+
+main h1, h3{
+    text-align: center;
+    margin: auto;
+}
+
+#cart{
+    text-align: center;
+}
+
+#cart>.row{
+    text-align: center;
+    margin: auto;
+}
+
+#cart .container .row .col:last-child{
+    position: relative;
+}
+
+#cart .container .row .col:last-child button{
+    position: absolute;
+    right: 10px;
+}
+
+#deleteButton{
+    border: none;
+}
+
+#deleteButton img{
+    height: 0.8em;
+    background-color: transparent;
+}
+
+img{
+    max-width: 7em;
+    max-height: auto;
+}
+
+.row{
+    margin: auto;
+    width:80%;
+    margin-bottom: 1em;
+}
+
+/* Forms */
+form:nth-last-of-type(1){
+    width: 90%;
+    margin: auto;
+}
+
+form>.row:nth-last-child(2), form>.row:nth-last-child(1){
+    margin: auto;
+}
+
+#szum{
+    width: 50%;
+    margin: auto;
+    text-align: end;
+    display: flex;
+    justify-content: end;
+}
+
+#szum>p{
+    margin-top: 3em;
+    width: fit-content;
+    border-top: 1px solid gray;
+}
