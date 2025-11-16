@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class webshopController extends Controller
 {
@@ -99,7 +100,7 @@ class webshopController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'role' => $role,
-            'password' => $request->password
+            'password' => Hash::make($request->password)
         ]);
         }catch(\Exception $e){
             return back()->with('error', 'Hiba az adatok mentésekor');
