@@ -30,7 +30,7 @@ class MailController extends Controller
             </div>
         ';
 
-        $this->mailHelper($address, $name, $request->input('title'), $body);
+         return $this->mailHelper($address, $name, $request->input('title'), $body);
     }
 
     public function Subscribe(Request $request){
@@ -53,7 +53,7 @@ class MailController extends Controller
                 </div> 
             ';
 
-        $this->mailHelper($address, $name, "Sikeres feliratkozás", $body);
+        return $this->mailHelper($address, $name, "Sikeres feliratkozás", $body);
     }
 
     public function sendMailToSub(Request $request){
@@ -144,7 +144,7 @@ class MailController extends Controller
                 </div> 
             ';
 
-        $this->mailHelper($address, $name, "Sikeres regisztráció", $body);
+        return $this->mailHelper($address, $name, "Sikeres regisztráció", $body);
     }
     private function mailHelper($address, $name, $subject, $body, $addImg = null){
         $mail = new PHPMailer(true);
