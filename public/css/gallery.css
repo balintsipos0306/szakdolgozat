@@ -7,11 +7,6 @@ main a{
     text-decoration: none;
 }
 
-main a:hover{
-    font-weight: bold;
-    transition: all;
-}
-
 main .row{
     width:100%;
     margin: 0;
@@ -30,11 +25,6 @@ main .row:first-child{
     margin-bottom:1rem;
 }
 
-main .row:first-child>.col{
-    position: relative;
-    text-align: center;
-}
-
 h2{
     color:gray;
     font-size:larger;
@@ -43,15 +33,6 @@ h2{
 #pics img{
     margin:auto;
     width: 100%;
-}
-
-#allo{
-    max-width: 300px;
-    height: auto;
-}
-
-main b{
-    font-size: 2rem;
 }
 
 #hr{

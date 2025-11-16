@@ -14,10 +14,8 @@ function showPic(element){
     overlay.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
     overlay.style.zIndex = "999";
     overlay.style.transition = "opacity 0.5s";
-    overlay.style.opacity = "0";
 
-    var zoomed = element.cloneNode(false);
-    zoomed.id = 1000;
+    const zoomed = element.cloneNode(false);
     overlay.appendChild(zoomed);
 
     zoomed.style.position = "fixed";
@@ -33,7 +31,7 @@ function showPic(element){
         overlay.style.opacity = "1";
         zoomed.style.width = "60%";
     }, 10);
-    
+
     overlay.addEventListener("click", function(){
         overlay.style.opacity = "0";
         zoomed.style.width = "0%";
