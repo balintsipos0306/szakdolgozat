@@ -15,6 +15,7 @@ document.addEventListener("scroll", function() {
     const nav = document.getElementById("navv");
     const links = document.querySelectorAll(".nav-link");
 
+    if (window.innerWidth <= 768) return null
     if(window.scrollY > 10){
         logo.classList.add("scrolled")
         header.classList.add("scrolled")

@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="{{ asset('css/baseHeader.css') }}">
+<script src="js/hamburger.js"></script>
 
 <div>
     <header id="myheader">
