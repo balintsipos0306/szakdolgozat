@@ -62,6 +62,10 @@ class webshopController extends Controller
         ]);
         
         $oldItem = Webshop::find($request->id);
+        if (!$oldItem) {
+            return redirect()->back()->with('error', 'Termék nem található');
+        }
+
         $imagePath = $oldItem->image_path;
         $filePath = public_path('storage/' . $oldItem->image_path);
 
@@ -90,7 +94,7 @@ class webshopController extends Controller
          $request->validate([
             'name' => 'required|string|unique:users,name',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|string',
+            'password' => 'required|string|min:8',
         ]);
         $role='customer';
 
@@ -110,13 +114,12 @@ class webshopController extends Controller
 
     public function addToCart(Request $request){
         $request->validate([
-            'userID' => 'required|integer|exists:users,id',
             'itemID' => 'required|integer|exists:webshop,id',
         ]);
 
         try{
             Cart::create([
-                'userID' => $request->userID,
+                'userID' => auth()->id(),
                 'itemID' => $request->itemID,
             ]);
         }catch(\Exception $e){
@@ -128,7 +131,6 @@ class webshopController extends Controller
 
     public function deleteFromCart(Request $request){
         $request->validate([
-            'userID' => 'required|int',
             'itemID' => 'required|int',
         ]);
 
@@ -145,8 +147,8 @@ class webshopController extends Controller
 
     public function deleteAcc(Request $request){
         $request->validate([
-            'name' => 'required|string|unique:users,name',
-            'email' => 'required|email|unique:users,email',
+            'name' => 'required|string',
+            'email' => 'required|email',
         ]);
 
         $acc = User::where('name', $request->name)
