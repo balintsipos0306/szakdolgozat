@@ -57,6 +57,8 @@
     </div>
   </main>
 
-  <x-base-footer/>
+  <div style="margin-top: 10em">
+    <x-base-footer/>
+  </div>
 </body>
 </html>
