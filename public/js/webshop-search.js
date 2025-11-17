@@ -1,4 +1,4 @@
-//From URL on page load
+//From URL
 window.addEventListener('DOMContentLoaded', function() {
   const urlParams = new URLSearchParams(window.location.search);
   const searchTerm = urlParams.get('search');
@@ -23,7 +23,7 @@ function filterItems() {
   const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
   updateUrl(searchTerm)
   
-  // Filter items
+  // Filter
   const itemCards = document.querySelectorAll('.item-card');
   let visibleCount = 0;
   itemCards.forEach(card => {
@@ -38,7 +38,6 @@ function filterItems() {
     }
   });
 
-  // Show/hide "no results" message
   const noResults = document.getElementById('noResults');
   noResults.style.display = visibleCount === 0 ? 'block' : 'none';
 }
