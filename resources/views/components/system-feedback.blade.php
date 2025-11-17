@@ -22,7 +22,7 @@
         </script>
     @endif
 
-    @if ($errors->any())
+    @if ($errors->any() || session('error'))
         <div class="toast-container position-fixed top-0 end-0 p-3">
         <div id="errorToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
@@ -30,6 +30,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body">
+            {{ session('error') }}
             @foreach ($errors->all() as $error)
                 {{ $error }}
             @endforeach
