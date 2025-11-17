@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MailController;
@@ -11,6 +10,7 @@ use App\Http\Controllers\SubController;
 use App\Http\Controllers\webshopController;
 use App\Http\Controllers\webshopLoginController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\ViewController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,17 +26,11 @@ Route::get('/login', function(){
 
 // Galéria
 
-Route::get('/gallery/nature', function () {
-    return view('Gallery/gallery');
-});
+Route::get('/gallery/nature', [ViewController::class, 'galleryNature']);
 
-Route::get('/gallery/portraits', function () {
-    return view('Gallery/gallery_second');
-});
+Route::get('/gallery/portraits', [ViewController::class, 'galleryPortraits']);
 
-Route::get('/gallery/events', function () {
-    return view('Gallery/gallery_third');
-});
+Route::get('/gallery/events', [ViewController::class, 'galleryEvents']);
 
 Route::get('/contact', function () {
     return view('contact');
@@ -44,13 +38,9 @@ Route::get('/contact', function () {
 
 // Blog
 
-Route::get('/blog', function(){
-    return view('blog');
-});
+Route::get('/blog', [ViewController::class, 'blogIndex']);
 
-Route::get('/blog/{id}', function($id) {
-    return view('openedBlog', ['id' => $id]);
-})->name('blog.open');
+Route::get('/blog/{id}', [ViewController::class, 'blogShow'])->name('blog.open');
 
 
 // Email  / körlevél
@@ -84,20 +74,13 @@ Route::get('/save-sent-newsletter', [NewsletterController::class, 'saveSentNewsl
 
 //Webshop
 
-Route::get('/shop', function(){
-    $items = DB::table('webshop')->get();
-    return view("webshop", compact('items'));
-});
+Route::get('/shop', [ViewController::class, 'webshopIndex']);
 
 Route::get('/shop/search', [webshopController::class, 'search'] );
 
-Route::get('/shop/item/{id}', function($id) {
-    return view('webshopItem', ['id' => $id]);
-})->name('item.open');
+Route::get('/shop/item/{id}', [ViewController::class, 'webshopItemShow'])->name('item.open');
 
-Route::get('/shop/order', function(){
-    return view('orderItem');
-});
+Route::get('/shop/order', [ViewController::class, 'webshopOrder']);
 
 Route::post('/webshop/login', [webshopLoginController::class, 'authenticate']);
 Route::delete('/webshop/logout', [webshopLoginController::class, 'destroy']);
@@ -114,9 +97,7 @@ Route::middleware('CustomAuth') -> group(function (){
         return view('Admin/adminView');
     });
 
-    Route::get('/admin/image-upload', function(){
-        return view('Admin/imgupload');
-    });
+    Route::get('/admin/image-upload', [ViewController::class, 'adminImageUpload']);
 
     Route::get('/admin/blog', function(){
         return view('Admin/blog-create');
@@ -130,19 +111,13 @@ Route::middleware('CustomAuth') -> group(function (){
     Route::post('/blog-update', [BlogController::class, 'update']);
 
 
-    Route::get('/blog/edit/{id}', function($id) {
-        return view('Admin/blogEdit', ['id' => $id]);
-    })->name('blog.edit');
+    Route::get('/blog/edit/{id}', [ViewController::class, 'adminBlogEdit'])->name('blog.edit');
 
-    Route::get('/admin/webshop', function(){
-        return view('Admin/adminWebshop');
-    });
+    Route::get('/admin/webshop', [ViewController::class, 'adminWebshop']);
 
     Route::post('/webshop-upload', [webshopController::class, 'store']);
     Route::post('/webshop-delete', [webshopController::class, 'delete']);
     Route::post('/webshop-update', [webshopController::class, 'update']);
     
-    Route::get('/admin/webshop/item/{id}', function($id) {
-        return view('Admin/webshopEdit', ['id' => $id]);
-    })->name('item.edit');
+    Route::get('/admin/webshop/item/{id}', [ViewController::class, 'adminWebshopEdit'])->name('item.edit');
 });

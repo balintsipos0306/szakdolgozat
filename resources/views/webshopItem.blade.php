@@ -36,11 +36,6 @@
         </div>
         
         <div class="items">
-            @php
-                $item = DB::table('webshop')->where('id', $id)->first();
-                $allItems = DB::table('webshop')->get();
-            @endphp
-
             <div class="row">
                 <div class="col">
                 <img src="{{ asset('storage/' . $item->image_path) }}" class="card-img-top" alt="...">
@@ -58,7 +53,7 @@
                         <form action="/item-to-cart" method="POST">
                           @csrf
                           <div class="mb-3">
-                            <input type="hidden" class="form-control" id="ID" name="itemID" value="{{$id}}">
+                            <input type="hidden" class="form-control" id="ID" name="itemID" value="{{$item->id}}">
                           </div>
                           <div class="mb-3">
                             <input type="hidden" class="form-control" id="ID" name="userID" value="{{Auth()->user()->id}}">
@@ -81,17 +76,17 @@
             <h2><u>További termékek</u></h2>
 
             <div class="row d-flex flex-nowrap" id="felsorolas">
-                @foreach ($allItems as $items)
-                    @if ($items->name != $item->name)                    
+                @foreach ($allItems as $otherItem)
+                    @if ($otherItem->name != $item->name)                    
                     <div class="col">
                         <div class="card" aria-hidden="true">
-                            <img src="{{ asset('storage/' . $items->image_path) }}" class="card-img-top" alt="...">
+                            <img src="{{ asset('storage/' . $otherItem->image_path) }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                <span>{{$items->name}}</span>
+                                <span>{{$otherItem->name}}</span>
                                 </h5>
-                                <p class="card-text" id="szoveg">{{$items->text}}...</p>
-                                <a class="btn btn-primary col-6" href="{{ route('item.open', ['id' => $items->id]) }}">Megnyitás</a>
+                                <p class="card-text" id="szoveg">{{$otherItem->text}}...</p>
+                                <a class="btn btn-primary col-6" href="{{ route('item.open', ['id' => $otherItem->id]) }}">Megnyitás</a>
                             </div>
                         </div>
                     </div>

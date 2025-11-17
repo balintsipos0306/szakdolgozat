@@ -15,4 +15,14 @@ class Cart extends Model
         'userID',
         'itemID',
     ];
+
+    public function item()
+    {
+        return $this->belongsTo(Webshop::class, 'itemID', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'userID', 'id');
+    }
 }

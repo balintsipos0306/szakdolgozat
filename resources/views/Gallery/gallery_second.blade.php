@@ -34,10 +34,6 @@
 
       <hr id="hr" class="border border-black border-2 opacity-100">
 
-      @php
-        $pictures = DB::table('gallery')->where('category', 'Portré')->get();
-      @endphp
-
       <div class="row">
         @foreach ($pictures as $picture)
           <div class="col-sm-6">

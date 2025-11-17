@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use App\Models\Blog;
 
 class BlogController extends Controller
@@ -29,6 +30,7 @@ class BlogController extends Controller
         }catch(\Exception $e){
             return redirect()->back()->with('error', 'A blog feltöltése sikertelen.');
         }
+        $this->clearCache();
 
         // Feliratkozott fiókok értesítése
         if($request->isPublished == "Publikált"){
@@ -56,6 +58,7 @@ class BlogController extends Controller
             $blog->delete();
             return redirect()->back()->with('success', 'A blog törlése sikeres');
         }
+        $this->clearCache($request->id);
         return redirect()->back()->with('error', 'A blog törlése sikertelen');
     }
 
@@ -90,6 +93,7 @@ class BlogController extends Controller
         }catch(\Exception $e){
             return redirect()->back()->with('error', 'Hiba a blog mentésekor');
         }
+        $this->clearCache($request->id);
 
         if($request->isPublished == "Publikált" && $oldblog->isPublished == "Piszkozat"){
             return redirect()->action([MailController::class, 'newBlogToMail'], ['title' => $request->title,
@@ -99,5 +103,15 @@ class BlogController extends Controller
                                                                                                         ]);
         }
         return redirect('/admin/blog')->with('success', 'A blog módosítása sikeres');
+    }
+
+    private function clearCache($id = null){
+        if($id){
+            Cache::forget("blog.{$id}");
+            Cache::forget("blog.{$id}.previous");
+            Cache::forget("blog.{$id}.next");
+        }
+        Cache::forget('blogs.published');
+        Cache::forget('blogs.latest');
     }
 }

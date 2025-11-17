@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cache;
 
 class webshopController extends Controller
 {
@@ -31,6 +32,7 @@ class webshopController extends Controller
         }catch(\Exception $e){
             return redirect()->back()->with('error', 'Hiba a termék feltöltésekor');
         }
+        $this->clearCache();
         return redirect()->back()->with('success', 'Termék feltöltése sikeres');
     }
 
@@ -48,6 +50,7 @@ class webshopController extends Controller
             $item->delete();
             return redirect()->back()->with('success', 'A termék törlése sikeres');
         }
+        $this->clearCache($request->id);
         return redirect()->back()->with('error', 'A termék törlése sikertelen');
     }
 
@@ -86,7 +89,7 @@ class webshopController extends Controller
         }catch(\Exception $e){
             return redirect()->back()->with('error', 'Hiba a termék módosításakor');
         }
-
+        $this->clearCache($request->id);
         return redirect()->back()->with('success', 'Termék módosítása sikeres');
     }
 
@@ -171,5 +174,12 @@ class webshopController extends Controller
                        ->get();
     
         return view('webshop', compact('items'));
+    }
+
+    private function clearCache($id = null){
+        if($id){
+            Cache::forget("webshop.item.{$id}");
+        }
+        Cache::forget('webshop.all');
     }
 }

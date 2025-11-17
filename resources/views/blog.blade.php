@@ -21,10 +21,6 @@
   <x-base-header/>
 
   <main id = "main">  
-    @php
-      $blogs = DB::table('blogs')->where('isPublished', "publikált")->get();
-    @endphp
-
     <x-subscribe-card/>
 
     <div class="row d-flex flex-nowrap" id="felsorolas">
@@ -46,16 +42,14 @@
     
     <hr class="border border-secondary border-3 opacity-75">
 
-    @php
-      $latest = DB::table('blogs')->where('isPublished', "Publikált")->orderBy('created_at', 'DESC')->first();
-    @endphp
-
+    @if($latest)
     <div class="container">
       <img id="borito" src="{{asset('storage/'. $latest->image_path)}}" alt="">
       <h2>{{$latest->title}}</h2>
       <hr>
       <p>{{$latest->text}}</p>
     </div>
+    @endif
   </main>
 
   <x-base-footer/>

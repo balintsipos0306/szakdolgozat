@@ -21,10 +21,6 @@
   <main>
     <h1>Webshop szerkesztése</h1>
 
-    @php
-      $items = DB::table('webshop') -> get();
-    @endphp
-
     <div class="container">
         <div class="container mt-4" id="table">
             <div class="row">
@@ -117,10 +113,6 @@
 
     <h1>Regisztrált fiókok</h1>
     <div class="container">
-      @php
-       $accs = DB::table('users')->where('role', "customer")->get();
-      @endphp
-
 <div class="container">
         <div class="container mt-4" id="table">
             <div class="row">

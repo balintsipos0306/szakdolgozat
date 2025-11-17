@@ -21,10 +21,6 @@
     <main>
       <h1>Képek</h1>
 
-      @php
-          $pictures = DB::table('gallery')->get()
-      @endphp
-
       <div class="container">
         <div class="container mt-4" id="table">
             <div class="row">

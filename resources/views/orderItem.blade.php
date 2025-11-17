@@ -34,26 +34,17 @@
     @endif
 
     <div class="container">
-        @php
-            $cart = DB::table('cart')->where('userID', Auth()->user()->id)->get();
-            $szum = 0;
-        @endphp
-
         <div class="container" id="cart">
-        @foreach ($cart as $item)
-            @php
-                $items = DB::table('webshop')->where('id', $item->itemID)->first();
-                $szum += $items->price;
-            @endphp
+        @foreach ($items as $item)
             <div class="row">
                 <div class="col">
-                    <img src="{{ asset('storage/' . $items->image_path) }}" class="card-img-top" alt="...">
+                    <img src="{{ asset('storage/' . $item->image_path) }}" class="card-img-top" alt="...">
                 </div>
                 <div class="col">
-                    <p>{{$items->name}}</p>
+                    <p>{{$item->name}}</p>
                 </div>
                 <div class="col">
-                    <p>{{$items->price}}</p>
+                    <p>{{$item->price}} Ft</p>
                 </div>
                 <div class="col">
                     <form action="/delete-from-cart" method="POST" class="d-flex align-items-center">
@@ -62,7 +53,7 @@
                     <input type="hidden" name="userID" value="{{Auth()->user()->id}}" readonly>
                     </div>
                     <div class="mb-3">
-                    <input type="hidden" name="itemID" value="{{$items->id}}" readonly>
+                    <input type="hidden" name="itemID" value="{{$item->id}}" readonly>
                     </div>
                     <button id="deleteButton" type="submit"><img src="../webp/close.png" alt=""></button>
                 </form>
@@ -72,7 +63,7 @@
         </div>
 
         <div class="container" id="szum">
-            <p>Végősszeg: {{ $szum }} Ft</p>
+            <p>Végősszeg: {{ $sum }} Ft</p>
         </div>
         <hr>
         <h3>Jelenleg a webshopos fizetés nem üzemel, kérlek támogass <a href="https://revolut.me/bsipos03">Revoluton</a></h3>

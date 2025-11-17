@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use App\Models\Gallery;
 
 class GalleryController extends Controller
@@ -22,6 +23,8 @@ class GalleryController extends Controller
             'image_path' => $imagePath,
         ]);
 
+        $this->clearCache($request->category);
+
         return redirect()->back()->with('success', 'A kép sikeresen feltöltve.');
     }
 
@@ -32,14 +35,34 @@ class GalleryController extends Controller
         
         if($picture && !empty($picture->image_path))
         {
+            $category = $picture->category;
+            
             $filePath = public_path('storage/' . $picture->image_path);
             if(file_exists($filePath))
             {
                 unlink($filePath);
             }
+            
             $picture->delete();
+            $this->clearCache($category);
+            
             return redirect()->back()->with('success', 'A kép sikeresen törölve lett.');
         }
         return redirect()->back()->with('error', 'A kép törlése sikertelen');
+    }
+
+    private function clearCache($category){
+            $cacheKeys = [
+                'gallery.nature' => 'Természet',
+                'gallery.portraits' => 'Portré',
+                'gallery.events' => 'Rendezvény'
+            ];
+            
+            foreach ($cacheKeys as $key => $cat) {
+                if ($cat === $category) {
+                    Cache::forget($key);
+                    break;
+                }
+            }
     }
 }

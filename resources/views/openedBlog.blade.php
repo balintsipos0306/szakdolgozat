@@ -21,13 +21,6 @@
     
   <m id = "main">
     
-  @php
-    $blogs = DB::table('blogs')->where('isPublished', "publikált")->get();
-    $selected = DB::table('blogs')->where('isPublished', "publikált")->where('id', $id)->first();
-    $previous = DB::table('blogs')->where('isPublished', "publikált")->where('created_at', '<', $selected->created_at)->orderBy('created_at', 'DESC')->first();
-    $next = DB::table('blogs')->where('isPublished', "publikált")->where('created_at', '>', $selected->created_at)->orderBy('created_at', 'ASC')->first();
-  @endphp
-
   <x-subscribe-card/>
 
   <div class="container">
