@@ -1,27 +1,9 @@
-.collapse{
-    width: fit-content;
-    float: right;
-}
-
 main>.container{
     width:90%;
     padding: 1em;
     border-radius: 15px;
     padding-bottom: 10em;
     box-shadow: 20px 20px 50px grey;
-}
-
-main>.container>nav{
-    width: 100%;
-}
-
-form{
-    margin-left: 10%;
-    width: 100%;
-}
-
-form input{
-    width: 80% !important;
 }
 
 .items{
@@ -40,16 +22,6 @@ form input{
 .items .col .card:hover{
     box-shadow: 10px 10px 10px lightgray;
     transition: all 0.5s;
-}
-
-#username{
-    float:left;
-    font-size: 1em;
-}
-
-#szoveg{
-    height: 3em;
-    overflow: hidden;
 }
 
 .card{

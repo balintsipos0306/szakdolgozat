@@ -7,6 +7,7 @@ window.addEventListener('DOMContentLoaded', function() {
     document.getElementById('searchInput').value = searchTerm;
     filterItems();
   }
+  toggleClearButton(); // Check on page load
 });
 
 function updateUrl(searchTerm){
@@ -19,8 +20,16 @@ function updateUrl(searchTerm){
   window.history.pushState({}, '', url);
 }
 
-function filterItems() {
-  const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+function filterItems(clear = false) {
+  const searchTerm = clear ? "" : document.getElementById('searchInput').value.toLowerCase().trim();
+  
+  // If we're on the item page, redirect to shop page with search term
+  if (!document.getElementById('itemsContainer')) {
+    const shopUrl = '/shop' + (searchTerm ? '?search=' + encodeURIComponent(searchTerm) : '');
+    window.location.href = shopUrl;
+    return;
+  }
+  
   updateUrl(searchTerm)
   
   // Filter
@@ -40,4 +49,16 @@ function filterItems() {
 
   const noResults = document.getElementById('noResults');
   noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+}
+
+function clearFilter(){
+  document.getElementById('searchInput').value = "";
+  filterItems(true);
+  toggleClearButton();
+}
+
+function toggleClearButton(){
+  const input = document.getElementById('searchInput');
+  const clearBtn = document.getElementById('clearBtn');
+  clearBtn.style.display = input.value.trim() ? 'block' : 'none';
 }

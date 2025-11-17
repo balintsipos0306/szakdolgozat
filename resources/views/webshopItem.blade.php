@@ -26,15 +26,8 @@
   <x-webshop-header/>
 
   <main>
-    <div class="container">
-        <div class="nav">
-        <form class="d-flex" role="search" action="/shop/search" method="GET">
-          @csrf
-          <input class="form-control me-2" type="search" placeholder="Keresés" aria-label="Keresés" name="input">
-          <button class="btn btn-outline-success" type="submit">Keresés</button>
-        </form>
-        </div>
-        
+      <div class="container">    
+        <x-webshop-search/>
         <div class="items">
             <div class="row">
                 <div class="col">

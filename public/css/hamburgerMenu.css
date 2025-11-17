@@ -16,6 +16,11 @@
     background-color: #101010;
 }
 
+.collapse{
+    width: fit-content;
+    float: right;
+}
+
 @media  (max-width: 768px) {
 
     .hamburger {

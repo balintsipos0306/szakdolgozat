@@ -26,19 +26,7 @@
 
   <main>
     <div class="container">
-      <div class="nav">
-        <form class="d-flex" role="search" id="searchForm" onsubmit="return false;">
-          <input 
-            class="form-control me-2" 
-            type="search" 
-            placeholder="Keresés" 
-            aria-label="Keresés" 
-            name="input"
-            id="searchInput"
-            autocomplete="off">
-          <button class="btn btn-outline-success" type="button" onclick="filterItems()">Keresés</button>
-        </form>
-      </div>
+      <x-webshop-search/>
 
       <div class="items">
         <h2 id="noResults" style="margin:auto;text-align:center;display:none">Az általad keresett termék nem található</h2>
@@ -67,7 +55,5 @@
   <div style="margin-top: 10em">
     <x-base-footer/>
   </div>
-  
-  <script src="../js/webshop-search.js"></script>
 </body>
 </html>

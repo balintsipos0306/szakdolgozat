@@ -8,6 +8,16 @@ header{
     width: auto;
 }
 
+#username{
+    float:left;
+    font-size: 1em;
+}
+
+#szoveg{
+    height: 3em;
+    overflow: hidden;
+}
+
 #logo{
     height: 5em;
     width: auto;

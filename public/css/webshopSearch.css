@@ -1,0 +1,35 @@
+.search{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.search form{
+    align-items: center;
+    gap: 0.5em;
+}
+
+.search form input{
+    width: 30em !important;
+}
+
+@media (max-width: 1000px) {
+    .search form input{
+        width: 20em !important;
+    }
+    
+}
+
+@media (max-width: 768px) {
+    .search form input{
+        width: 10em !important;
+    }
+    
+}
+
+@media (max-width: 500px) {
+    .search form input{
+        width: 5em !important;
+    }
+    
+}
