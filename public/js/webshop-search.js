@@ -20,14 +20,12 @@ function updateUrl(searchTerm){
 }
 
 function filterItems() {
-  const searchInput = document.getElementById('searchInput');
-  const searchTerm = searchInput.value.toLowerCase().trim();
+  const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+  updateUrl(searchTerm)
+  
+  // Filter items
   const itemCards = document.querySelectorAll('.item-card');
   let visibleCount = 0;
-  
-  updateUrl(searchTerm)
-
-  // Filter items
   itemCards.forEach(card => {
     const name = card.getAttribute('data-name');
     const text = card.getAttribute('data-text');
