@@ -164,17 +164,6 @@ class webshopController extends Controller
         }
         return redirect()->back()->with('error', 'Fiók törlése sikertelen');
     }
-    
-    public function search(Request $request){
-
-        $searchTerm = $request->input('input');
-
-        $items = Webshop::where('name', 'LIKE', "%{$searchTerm}%")
-                       ->orWhere('text', 'LIKE', "%{$searchTerm}%")
-                       ->get();
-    
-        return view('webshop', compact('items'));
-    }
 
     private function clearCache($id = null){
         if($id){

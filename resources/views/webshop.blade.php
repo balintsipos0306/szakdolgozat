@@ -27,20 +27,27 @@
   <main>
     <div class="container">
       <div class="nav">
-        <form class="d-flex" role="search" action="/shop/search" method="GET">
-          @csrf
-          <input class="form-control me-2" type="search" placeholder="Keresés" aria-label="Keresés" name="input">
-          <button class="btn btn-outline-success" type="submit">Keresés</button>
+        <form class="d-flex" role="search" id="searchForm" onsubmit="return false;">
+          <input 
+            class="form-control me-2" 
+            type="search" 
+            placeholder="Keresés" 
+            aria-label="Keresés" 
+            name="input"
+            id="searchInput"
+            autocomplete="off">
+          <button class="btn btn-outline-success" type="button" onclick="filterItems()">Keresés</button>
         </form>
       </div>
 
       <div class="items">
-        @if(count($items) == 0)
-          <h2 style="margin:auto;text-align:center">Az általad keresett termék nem található</h2>
-        @endif
-        <div class="row">
+        <h2 id="noResults" style="margin:auto;text-align:center;display:none">Az általad keresett termék nem található</h2>
+        
+        <div class="row" id="itemsContainer">
           @foreach ($items as  $item)
-            <div class="col">
+            <div class="col item-card" 
+                 data-name="{{strtolower($item->name)}}" 
+                 data-text="{{strtolower($item->text)}}">
               <div class="card" style="width: 18rem;">
                 <img src="{{ asset('storage/' . $item->image_path) }}" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -60,5 +67,7 @@
   <div style="margin-top: 10em">
     <x-base-footer/>
   </div>
+  
+  <script src="../js/webshop-search.js"></script>
 </body>
 </html>

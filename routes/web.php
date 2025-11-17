@@ -76,8 +76,6 @@ Route::get('/save-sent-newsletter', [NewsletterController::class, 'saveSentNewsl
 
 Route::get('/shop', [ViewController::class, 'webshopIndex']);
 
-Route::get('/shop/search', [webshopController::class, 'search'] );
-
 Route::get('/shop/item/{id}', [ViewController::class, 'webshopItemShow'])->name('item.open');
 
 Route::get('/shop/order', [ViewController::class, 'webshopOrder']);
