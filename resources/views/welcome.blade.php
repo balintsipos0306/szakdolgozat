@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/mainPage.css">
   <link rel="stylesheet" href="css/scrollbar.css">
-  <title>Sipos Bálint - Kezdőlap</title>
+  <title>Kezdőlap - Sipos Bálint</title>
 </head>
 <body id="page">
   <div class="loader">
