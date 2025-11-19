@@ -47,7 +47,7 @@
               <img src="webp/tinywow_DSC_4602_65856490.webp" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-              <img src="webp/tinywow_DSC_6499_47198672.webp" class="d-block w-100" alt="...">
+              <img src="webp/tinywow_DSC_4578_86100232.webp" class="d-block w-100" alt="...">
             </div>
           </div>
         </div>
