@@ -22,10 +22,6 @@
   <main>
     <h1>Blogok szerkesztése</h1>
 
-    @php
-      $blogs = DB::table('blogs') -> get();
-    @endphp
-
     <div class="container">
       <div class="container mt-4" id="table">
         <div class="row">

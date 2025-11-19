@@ -41,17 +41,10 @@
           <a data-bs-toggle="modal" data-bs-target="#login"><img id="icon" src="../../webp/user.png" alt=""></a>
         </li>
         <li class="nav-item">
-          @if (empty(Auth()->user()->name))
-            <a data-bs-toggle="offcanvas" href="#cart" role="button" aria-controls="offcanvasExample"><img id="icon" src="../../webp/shopping-cart.png" alt=""></a>
+          @if ($hasCartItems)
+            <a data-bs-toggle="offcanvas" href="#cart" role="button" aria-controls="offcanvasExample"><img id="icon" src="../../webp/shopping-cart-item.png" alt=""></a>
           @else
-            @php
-              $cartitems = DB::table('cart')->where('userID', Auth()->user()->id)->first();
-            @endphp
-            @if (empty($cartitems))
-              <a data-bs-toggle="offcanvas" href="#cart" role="button" aria-controls="offcanvasExample"><img id="icon" src="../../webp/shopping-cart.png" alt=""></a>
-            @else
-              <a data-bs-toggle="offcanvas" href="#cart" role="button" aria-controls="offcanvasExample"><img id="icon" src="../../webp/shopping-cart-item.png" alt=""></a>   
-            @endif
+            <a data-bs-toggle="offcanvas" href="#cart" role="button" aria-controls="offcanvasExample"><img id="icon" src="../../webp/shopping-cart.png" alt=""></a>
           @endif
         </li>
       </ul>

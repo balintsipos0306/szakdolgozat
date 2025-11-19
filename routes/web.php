@@ -91,15 +91,11 @@ Route::post('rm-acc', [webshopController::class, 'deleteAcc']);
 //Admin oldal
 
 Route::middleware('CustomAuth') -> group(function (){
-    Route::get('/admin', function (){
-        return view('Admin/adminView');
-    });
+    Route::get('/admin', [ViewController::class, 'adminView']);
 
     Route::get('/admin/image-upload', [ViewController::class, 'adminImageUpload']);
 
-    Route::get('/admin/blog', function(){
-        return view('Admin/blog-create');
-    });
+    Route::get('/admin/blog', [ViewController::class, 'adminBlog']);
     
     Route::post('/upload', [GalleryController::class, 'store']);
     Route::post('/rm-image', [GalleryController::class, 'delete']);

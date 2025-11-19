@@ -9,6 +9,7 @@ use App\Models\Gallery;
 use App\Models\Webshop;
 use App\Models\Cart;
 use App\Models\User;
+use App\Models\Newsletter;
 
 class ViewController extends Controller
 {
@@ -144,5 +145,19 @@ class ViewController extends Controller
     {
         $item = Webshop::findOrFail($id);
         return view('Admin.webshopEdit', compact('item', 'id'));
+    }
+
+    public function adminView()
+    {
+        $emails = Cache::remember('newsletter.all', 3600, function () {
+            return Newsletter::all();
+        });
+        return view('Admin.adminView', compact('emails'));
+    }
+
+    public function adminBlog()
+    {
+        $blogs = Blog::all();
+        return view('Admin.blog-create', compact('blogs'));
     }
 }

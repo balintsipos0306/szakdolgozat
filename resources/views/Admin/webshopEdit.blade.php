@@ -22,10 +22,6 @@
   <main>
     <h1>Blog módosítása</h1>
 
-    @php
-      $item = DB::table('webshop')->where('id', $id) -> first();
-    @endphp
-
   <div class="container">
     <form action="/webshop-update" method="POST" enctype="multipart/form-data">
       @csrf

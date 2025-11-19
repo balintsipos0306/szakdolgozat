@@ -28,11 +28,6 @@
         <x-new-letter/>
     </div>
 
-    @php
-      $emails = DB::table('newsletter')->get();
-    @endphp
-
-
     <div class="container" id =table>
       <table class="table table-hover">
         <thead>
@@ -47,7 +42,7 @@
         <tbody>
           @foreach ($emails as $mail)
             @php
-              $recipients = json_decode($mail->emails, true) ?? [];
+              $recipients = $mail->emails ?? [];
               $recipientDisplay = implode(', ', array_slice($recipients, 0, 2));
               if (count($recipients) > 2) {
                   $recipientDisplay .= '...';
@@ -59,7 +54,7 @@
               data-id="{{ $mail->id }}"
               data-title="{{ $mail->title }}"
               data-body="{{ $mail->body }}"
-              data-emails="{{$mail->emails }}"
+              data-emails="{{ json_encode($mail->emails) }}"
               data-created="{{ $mail->created_at }}"
             >
               <td>{{ $mail->id }}</td>
