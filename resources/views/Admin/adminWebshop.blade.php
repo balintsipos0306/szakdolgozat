@@ -56,7 +56,7 @@
                     <p>{{$item->name}}</p>
                   </div>
                   <div class="col d-flex align-items-center justify-content-center" id="col">
-                    <p>{{$item->text}}</p>
+                    <p>{{Str::limit($item->text, 60)}}</p>
                   </div>
                   <div class="col d-flex align-items-center justify-content-center" id="col">
                     <img src="{{ asset('storage/' . $item->image_path) }}">

@@ -40,8 +40,7 @@
                 <img src="{{ asset('storage/' . $item->image_path) }}" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">{{$item->name}}</h5>
-                  <p id="szoveg"class="card-text">{{$item->text}}</p>
-                  <p>...</p>
+                  <p id="szoveg"class="card-text">{{Str::limit($item->text, 40)}}</p>
                   <a href="{{ route('item.open', ['id' => $item->id]) }}" class="btn btn-primary">Megnyitás</a>
                 </div>
               </div>
