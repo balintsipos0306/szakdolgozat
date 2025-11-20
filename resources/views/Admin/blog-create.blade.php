@@ -60,7 +60,7 @@
               <p>{{$blog->title}}</p>
             </div>
             <div class="col d-flex align-items-center justify-content-center" id="col">
-              <p>{{$blog->text}}</p>
+              <p>{{ Str::limit($blog->text, 60)}}<p>
             </div>
             <div class="col d-flex align-items-center justify-content-center" id="col">
               <img src="{{ asset('storage/' . $blog->image_path) }}">
