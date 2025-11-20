@@ -149,9 +149,7 @@ class ViewController extends Controller
 
     public function adminView()
     {
-        $emails = Cache::remember('newsletter.all', 3600, function () {
-            return Newsletter::all();
-        });
+        $emails =  Newsletter::all();
         return view('Admin.adminView', compact('emails'));
     }
 
