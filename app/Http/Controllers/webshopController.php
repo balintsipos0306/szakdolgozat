@@ -42,15 +42,16 @@ class webshopController extends Controller
 
         if($item  && !empty($item->image_path))
         {
+            Cart::where('itemID', $id)->delete();
             $filePath = public_path('storage/' . $item->image_path);
             if (file_exists($filePath))
             {
                 unlink($filePath);
             }
             $item->delete();
+            $this->clearCache($id);
             return redirect()->back()->with('success', 'A termék törlése sikeres');
         }
-        $this->clearCache($request->id);
         return redirect()->back()->with('error', 'A termék törlése sikertelen');
     }
 
