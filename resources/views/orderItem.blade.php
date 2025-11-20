@@ -66,7 +66,7 @@
             <p>Végősszeg: {{ $sum }} Ft</p>
         </div>
         <hr>
-        <h3>Jelenleg a webshopos fizetés nem üzemel, kérlek támogass <a href="https://revolut.me/bsipos03">Revoluton</a></h3>
+        <h3>A fizetés <a href="https://revolut.me/bsipos03">Revoluton</a> keresztül lehetséges</h3>
     </div>
 
   </main>
