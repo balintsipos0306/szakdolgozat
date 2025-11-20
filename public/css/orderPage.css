@@ -63,10 +63,10 @@ img{
 .row{
     margin: auto;
     width:80%;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
+    padding: 1em 0;
 }
 
-/* Forms */
 form:nth-last-of-type(1){
     width: 90%;
     margin: auto;
